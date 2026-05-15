@@ -73,9 +73,7 @@ with open(f'{PROJECT_ROOT}/config/feature_family.json') as f:
 # Configure transaction cost 
 #----------------------------------------------------------------
 
-# Test
-print(f"Bitcoin transaction cost: {get_transaction_cost('Bitcoin')*100:.3f}%")
-print(f"Apple transaction cost: {get_transaction_cost('Apple')*100:.3f}%")
+
 
 
 def train_and_evaluate_single_seed(

@@ -20,7 +20,8 @@ assets = {
 }
 
 # dir to save
-output_dir = "data/raw"
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+output_dir = os.path.join(PROJECT_ROOT, "data", "raw")
 os.makedirs(output_dir, exist_ok=True)
 
 # Timelapse 3 years from the day it was created 16-03-2026
