@@ -182,7 +182,7 @@ def generate_summary_tables(df):
     ranking.to_csv(os.path.join(OUTPUT_DIR, 'table_ranking_global.csv'))
     
     return pivot, ranking
-
+#########################################
 
 def generate_paper_comparison_table(df):
     # Generate academic comparison table for baseline, individuals, and top 3 ablations
@@ -263,7 +263,7 @@ def generate_paper_comparison_table(df):
     print(f"\n Saved: {path}")
     
     return pivot
-
+#######################################
 
 #---------------------------------------------------------------
 # Graphics
@@ -598,7 +598,9 @@ if __name__ == '__main__':
     # Summary tables
     print("\n Generating tables...")
     pivot, ranking = generate_summary_tables(df)
+    ###############
     paper_table = generate_paper_comparison_table(df)
+    ##################
     
     # Plots
     print("\n Generating graphics....")

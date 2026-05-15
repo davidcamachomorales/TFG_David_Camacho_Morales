@@ -74,6 +74,9 @@ FAMILY_COLORS = {
     'temporal_decomposition': '#dcbeff',
     'time_delay_embedding': '#9A6324',
     'baseline': '#808000',
+    'ablation_statistical': '#000075',  
+    'ablation_all': '#000000',          
+    'pure_trend': '#800000',            
 }
 
 #----------------------------------------------------------------
@@ -208,14 +211,14 @@ print(f"Timesteps: {TIMESTEPS} | Seed: {SEED} | Investment: {INITIAL_INVESTMENT}
 print("-" * 70)
 
 #  Load data and features
-print(f"\n[1/3] Loading data for {ASSET}...")
+print(f"\n Loading data for {ASSET}...")
 raw_file = asset_files[ASSET]
 df_raw = load_dataset(raw_file)
 df_with_features = prepare_features(df_raw)
 print(f"  {len(df_with_features)} rows, {len(df_with_features.columns)} columns")
 
 # Load feature families
-with open('../config_files/feature_family_v4.json') as f:
+with open('../config_files/feature_family.json') as f:
     feature_family = json.load(f)
 
 families = {}
@@ -228,14 +231,21 @@ for fam in feature_family['Families']:
         missing = [m for m in members if m not in df_with_features.columns]
         print(f" Skipping family '{fam['Name']}' — missing features: {missing}")
 
-print(f" Available families: {list(families.keys())}")
+# Keep only individual features and top 3 ablations to avoid visual overload
+allowed_families = [
+    'baseline', 'SMA', 'EMA', 'MACD', 'RSI', 'SO', 'BB', 'ATR', 'RV', 
+    'lagged', 'difference_and_change', 'temporal_decomposition', 'time_delay_embedding',
+    'ablation_statistical', 'ablation_all', 'pure_trend'
+]
+families = {k: v for k, v in families.items() if k in allowed_families}
+
 
 # For each algorithm train and test each family
 algorithms = ['DQN', 'PPO', 'A2C']
 
 for algo_name in algorithms:
     print(f"\n{'-'*70}")
-    print(f"[2/3] Algorithm: {algo_name}")
+    print(f" Algorithm: {algo_name}")
     print(f"{'-'*70}")
     
     family_curves = {}
@@ -292,7 +302,7 @@ for algo_name in algorithms:
         del model
     
     # Generate plot
-    print(f"\n[3/3] Generating plot {algo_name}...")
+    print(f"\n Generating plot {algo_name}...")
     plot_equity_curves(algo_name, family_curves, ASSET)
 
 print(f"\n{'-'*70}")
