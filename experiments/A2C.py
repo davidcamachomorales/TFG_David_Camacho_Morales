@@ -16,9 +16,20 @@ from stable_baselines3.common.evaluation import evaluate_policy
 from stable_baselines3.common.callbacks import EvalCallback, CheckpointCallback
 
 import sys
-sys.path.append('../')
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 # Uses improved environment
+# Import utility functions
+from src.experiment_utils import (
+    set_all_seeds,
+    get_family_members,
+    get_scenario_data,
+    get_transaction_cost,
+    aggregate_seed_results
+)
+
 from src.trading_env_improved import ImprovedTradingEnv
 from src.data_utils import load_dataset, prepare_features, split_train_val, normalize_dataframe, normalize_val_with_scaler
 
@@ -43,26 +54,10 @@ print(f"Running {N_SEEDS} seeds per scenario: {SEEDS}")
 print(f"Deterministic mode: {USE_DETERMINISTIC}")
 print(f"Single environment: {USE_SINGLE_ENV}")
 
-def set_all_seeds(seed: int):
-    # Set all random seeds for reproducibility
-    # Cuda operations are deterministic when USE_DETERMINISTIC is True
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    
-    if USE_DETERMINISTIC:
-        torch.backends.cudnn.deterministic = True
-        torch.backends.cudnn.benchmark = False
-        os.environ['PYTHONHASHSEED'] = str(seed)
-    
-    return seed
-
 timeframe = '1d'
 
 # Load scenario config
-scenario_config = pd.read_csv(f'../config_files/scenarios_config_{timeframe}_ablation_v4.csv')
+scenario_config = pd.read_csv(f'{PROJECT_ROOT}/config/scenarios_config_{timeframe}_ablation.csv')
 
 # Format date columns
 scenario_config['start_train_date'] = pd.to_datetime(scenario_config['start_train_date'], format='%d/%m/%Y')
@@ -71,54 +66,12 @@ scenario_config['start_val_date'] = pd.to_datetime(scenario_config['start_val_da
 scenario_config['end_val_date'] = pd.to_datetime(scenario_config['end_val_date'], format='%d/%m/%Y')
 
 # Load feature family json
-with open('../config_files/feature_family_v4.json') as f:
+with open(f'{PROJECT_ROOT}/config/feature_family.json') as f:
     feature_family = json.load(f)
-
-def get_family_members(family_name, data):
-    # Parse the json data if it is a string, otherwise use it as is
-    if isinstance(data, str):
-        data = json.loads(data)
-    
-    # Find the family with the name
-    for family in data['Families']:
-        if family['Name'] == family_name:
-            # Return a list of member names
-            return [member['Name'] for member in family['Members']]
-    
-    # If family not found, return None or an empty list
-    return None
-
-
-def get_scenario_data(scenario_name, scenario_config):
-    # Get the scenario row
-    scenario = scenario_config[scenario_config['scenario'] == scenario_name].iloc[0]
-    
-    # Get the data for the scenario
-    scenario_data = {
-        'asset': scenario['asset'],
-        'feature_family': scenario['feature_family'],
-        'start_train_date': scenario['start_train_date'],
-        'end_train_date': scenario['end_train_date'],
-        'start_val_date': scenario['start_val_date'],
-        'end_val_date': scenario['end_val_date'],
-        'raw_file': scenario['raw_file'],
-    }
-    
-    return scenario_data
-
 
 #----------------------------------------------------------------
 # Configure transaction cost 
 #----------------------------------------------------------------
-
-def get_transaction_cost(asset_name):
-    # Determine transaction cost based on asset type
-    # Crypto is 0.02% from Binance maker fee, traditional assets are 0.01%
-    crypto_assets = ['Bitcoin', 'Ethereum', 'TetherUSDT']
-    if asset_name in crypto_assets:
-        return 0.0002  # 0.02% for crypto
-    else:
-        return 0.0001  # 0.01% for traditional assets
 
 # Test
 print(f"Bitcoin transaction cost: {get_transaction_cost('Bitcoin')*100:.3f}%")
@@ -138,12 +91,12 @@ def train_and_evaluate_single_seed(
     # Train and evaluate A2C for a single seed
     # Returns dict with all metrics for this seed
     # Set all seeds
-    set_all_seeds(seed)
+    set_all_seeds(seed, USE_DETERMINISTIC)
     
     # Create environments
     def make_env(df, rank):
         def _init():
-            set_all_seeds(seed + rank)  # Slightly different seed per env
+            set_all_seeds(seed + rank, USE_DETERMINISTIC)  # Slightly different seed per env
             return ImprovedTradingEnv(df, transaction_cost=transaction_cost)
         return _init
     
@@ -209,36 +162,6 @@ def train_and_evaluate_single_seed(
     
     return metrics
 
-def aggregate_seed_results(seed_results: List[Dict]) -> Dict:
-    # Aggregate results from multiple seeds into mean and std
-    # Returns mean, std, min, max and list of values for statistical tests
-    df_seeds = pd.DataFrame(seed_results)
-    
-    aggregated = {
-        'n_seeds': len(seed_results),
-        'seeds_used': [r['seed'] for r in seed_results],
-    }
-    
-    metrics_to_aggregate = [
-        'total_return', 'total_return_before_costs',
-        'sharpe_ratio', 'sharpe_ratio_before_costs',
-        'sortino_ratio', 'max_drawdown',
-        'win_rate', 'win_rate_before_costs',
-        'total_transaction_costs', 'trade_count', 'trade_frequency',
-        'final_net_worth', 'final_net_worth_before_costs'
-    ]
-    
-    for metric in metrics_to_aggregate:
-        values = df_seeds[metric].values
-        aggregated[f'{metric}_mean'] = float(np.mean(values))
-        aggregated[f'{metric}_std'] = float(np.std(values))
-        aggregated[f'{metric}_min'] = float(np.min(values))
-        aggregated[f'{metric}_max'] = float(np.max(values))
-        aggregated[f'{metric}_values'] = values.tolist()
-    
-    return aggregated
-
-
 #----------------------------------------------------------------
 # Select scenarios to process
 #----------------------------------------------------------------
@@ -253,13 +176,13 @@ print(f"Processing {len(list_scenario_id)} scenarios × {N_SEEDS} seeds = {total
 print(f"Estimated time: {total_runs * 2 / 60:.1f} hours (assuming ~2 min per run)")
 
 # Create results directories
-os.makedirs('../RL_outputs/results/df', exist_ok=True)
-os.makedirs('../RL_outputs/results/json', exist_ok=True)
-os.makedirs('../RL_outputs/results/plot', exist_ok=True)
-os.makedirs('../RL_outputs/tensorboard', exist_ok=True)
-os.makedirs('../RL_outputs/models', exist_ok=True)
-os.makedirs('../RL_outputs/logs', exist_ok=True)
-os.makedirs('../RL_outputs/checkpoints', exist_ok=True)
+os.makedirs(f'{PROJECT_ROOT}/results/df', exist_ok=True)
+os.makedirs(f'{PROJECT_ROOT}/results/json', exist_ok=True)
+os.makedirs(f'{PROJECT_ROOT}/results/plot', exist_ok=True)
+os.makedirs(f'{PROJECT_ROOT}/results/tensorboard', exist_ok=True)
+os.makedirs(f'{PROJECT_ROOT}/results/models', exist_ok=True)
+os.makedirs(f'{PROJECT_ROOT}/results/logs', exist_ok=True)
+os.makedirs(f'{PROJECT_ROOT}/results/checkpoints', exist_ok=True)
 
 # debug
 # print("Results directories created")
@@ -383,14 +306,14 @@ for idx, scenario_id in enumerate(list_scenario_id):
         '''
         
         # Save all the results in json to be save and to use it later for analysis
-        save_dir_json = "../RL_outputs/results/json"
+        save_dir_json = f"{PROJECT_ROOT}/results/json"
         os.makedirs(save_dir_json, exist_ok=True)
         with open(f"{save_dir_json}/{scenario_id}_A2C_results.json", 'w') as f:
             json_safe = {k: v.tolist() if isinstance(v, np.ndarray) else v for k, v in aggregated.items()}
             json.dump(json_safe, f, indent=2)
         
         # Save per-seed results for analysis / it is useful later
-        save_dir_per_seed = "../RL_outputs/results/json_per_seed"
+        save_dir_per_seed = f"{PROJECT_ROOT}/results/json_per_seed"
         os.makedirs(save_dir_per_seed, exist_ok=True)
         pd.DataFrame(seed_results).to_csv(
             f"{save_dir_per_seed}/{scenario_id}_per_seed.csv",
@@ -421,7 +344,7 @@ print(f"Total training runs: {len(all_seed_results)}")
 # Summary DF
 df_batch_summary = pd.DataFrame(batch_summary)
 # Save summary
-df_batch_summary.to_csv('../RL_outputs/results/A2C_batch_summary.csv', index=False)
+df_batch_summary.to_csv(f'{PROJECT_ROOT}/results/A2C_batch_summary.csv', index=False)
 # Save all seed results 
 df_all_seeds = pd.DataFrame(all_seed_results)
-df_all_seeds.to_csv('../RL_outputs/results/A2C_all_seed_results.csv', index=False)
+df_all_seeds.to_csv(f'{PROJECT_ROOT}/results/A2C_all_seed_results.csv', index=False)

@@ -15,7 +15,9 @@ from stable_baselines3 import DQN, PPO, A2C
 from stable_baselines3.common.vec_env import DummyVecEnv
 
 import sys
-sys.path.append('../')
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 from src.trading_env_improved import ImprovedTradingEnv
 from src.data_utils import load_dataset, prepare_features, split_train_val
@@ -37,7 +39,7 @@ df_with_features = prepare_features(df_raw)
 print(f"  With features: {len(df_with_features)} rows, {len(df_with_features.columns)} columns")
 
 # Use SMA family
-with open('../config_files/feature_family_v4.json') as f:
+with open(f'{PROJECT_ROOT}/config/feature_family.json') as f:
     feature_family = json.load(f)
 
 list_features = None

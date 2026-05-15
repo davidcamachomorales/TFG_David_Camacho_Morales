@@ -1,0 +1,470 @@
+    INFO: 2026-05-01 23:34:53,377:               log.py:   20: Logging to /Users/davidcamachomorales/Desktop/TFG/mdpdf.log
+   DEBUG: 2026-05-01 23:34:53,377:               cli.py:  103: docs/guia_tecnica_fase1.md
+    INFO: 2026-05-01 23:34:53,378:         converter.py:   14: docs/guia_tecnica_fase1.md
+   DEBUG: 2026-05-01 23:34:53,384:      pdf_renderer.py:  470: printSegment: Guía Técnica del Benchmark DRL — Fase 1: Ejecución Masiva
+   DEBUG: 2026-05-01 23:34:53,396:      pdf_renderer.py:  470: printSegment: ¿Qué está haciendo tu ordenador ahora mismo?
+   DEBUG: 2026-05-01 23:34:53,400:      pdf_renderer.py:  470: printSegment: Tu ordenador está ejecutando simultáneamente tres scripts de Python (DQN.py, PPO.py y A2C.py). Cada uno de ellos
+   DEBUG: 2026-05-01 23:34:53,402:      pdf_renderer.py:  470: printSegment: implementa un algoritmo distinto de 
+   DEBUG: 2026-05-01 23:34:53,403:      pdf_renderer.py:  470: printSegment: Deep Reinforcement Learning
+   DEBUG: 2026-05-01 23:34:53,405:      pdf_renderer.py:  470: printSegment:  (Aprendizaje por Refuerzo Profundo) y lo está
+   DEBUG: 2026-05-01 23:34:53,406:      pdf_renderer.py:  470: printSegment: entrenando y evaluando en 
+   DEBUG: 2026-05-01 23:34:53,407:      pdf_renderer.py:  470: printSegment: 210 escenarios diferentes
+   DEBUG: 2026-05-01 23:34:53,408:      pdf_renderer.py:  470: printSegment: , cada uno repetido con 
+   DEBUG: 2026-05-01 23:34:53,408:      pdf_renderer.py:  470: printSegment: 3 semillas aleatorias distintas
+   DEBUG: 2026-05-01 23:34:53,409:      pdf_renderer.py:  470: printSegment: .
+   DEBUG: 2026-05-01 23:34:53,409:      pdf_renderer.py:  470: printSegment: En total se están realizando 
+   DEBUG: 2026-05-01 23:34:53,410:      pdf_renderer.py:  470: printSegment: 1.890 entrenamientos
+   DEBUG: 2026-05-01 23:34:53,410:      pdf_renderer.py:  470: printSegment:  (210 escenarios × 3 semillas × 3 algoritmos).
+   DEBUG: 2026-05-01 23:34:53,411:      pdf_renderer.py:  470: printSegment: ¿Qué es un escenario?
+   DEBUG: 2026-05-01 23:34:53,412:      pdf_renderer.py:  470: printSegment: Un escenario es una combinación única de:
+   DEBUG: 2026-05-01 23:34:53,412:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,413:      pdf_renderer.py:  470: printSegment: Un activo financiero
+   DEBUG: 2026-05-01 23:34:53,415:      pdf_renderer.py:  470: printSegment:  (de los 10 disponibles: Gold, Silver, Nvidia, Apple, Google, Inditex, Bitcoin,
+   DEBUG: 2026-05-01 23:34:53,416:      pdf_renderer.py:  470: printSegment: Ethereum, TetherUSDT, S
+   DEBUG: 2026-05-01 23:34:53,416:      pdf_renderer.py:  470: printSegment: &
+   DEBUG: 2026-05-01 23:34:53,417:      pdf_renderer.py:  470: printSegment: P 500 Vanguard).
+   DEBUG: 2026-05-01 23:34:53,418:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,418:      pdf_renderer.py:  470: printSegment: Una familia de features
+   DEBUG: 2026-05-01 23:34:53,419:      pdf_renderer.py:  470: printSegment:  (un subconjunto concreto de variables que el agente puede 
+   DEBUG: 2026-05-01 23:34:53,419:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,420:      pdf_renderer.py:  470: printSegment: ver
+   DEBUG: 2026-05-01 23:34:53,420:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,421:      pdf_renderer.py:  470: printSegment:  para
+   DEBUG: 2026-05-01 23:34:53,422:      pdf_renderer.py:  470: printSegment: tomar decisiones).
+   DEBUG: 2026-05-01 23:34:53,422:      pdf_renderer.py:  470: printSegment: Por ejemplo, el escenario 1 es: 
+   DEBUG: 2026-05-01 23:34:53,423:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,424:      pdf_renderer.py:  470: printSegment: Entrenar un agente usando solo las medias móviles simples (SMA) sobre datos de
+   DEBUG: 2026-05-01 23:34:53,424:      pdf_renderer.py:  470: printSegment: Oro
+   DEBUG: 2026-05-01 23:34:53,425:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,429:      pdf_renderer.py:  470: printSegment: . El escenario 14 es el mismo pero con datos de Plata. El escenario 131 es entrenar con el grupo combinado de
+   DEBUG: 2026-05-01 23:34:53,430:      pdf_renderer.py:  470: printSegment: Tendencia (SMA + EMA + MACD) sobre Oro. Y así sucesivamente.
+   DEBUG: 2026-05-01 23:34:53,431:      pdf_renderer.py:  470: printSegment: Desglose de los 210 escenarios
+   DEBUG: 2026-05-01 23:34:53,431:      pdf_renderer.py:  470: printSegment: | Rango | Tipo | Qué prueba | Nº familias | Total escenarios |
+   DEBUG: 2026-05-01 23:34:53,432:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,433:      pdf_renderer.py:  470: printSegment: |-------|------|------------|-------------|------------------|
+   DEBUG: 2026-05-01 23:34:53,433:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,436:      pdf_renderer.py:  470: printSegment: | 1-10 |
+   DEBUG: 2026-05-01 23:34:53,436:      pdf_renderer.py:  470: printSegment: Individual: SMA | Solo 3 features de media móvil simple | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,437:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,439:      pdf_renderer.py:  470: printSegment: | 11-20 | Individual: EMA | Solo 3 features de
+   DEBUG: 2026-05-01 23:34:53,440:      pdf_renderer.py:  470: printSegment: media móvil exponencial | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,440:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,441:      pdf_renderer.py:  470: printSegment: | 21-30 | Individual: RSI | Solo 3 features de fuerza relativa | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,442:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,444:      pdf_renderer.py:  470: printSegment: | 31-40 |
+   DEBUG: 2026-05-01 23:34:53,445:      pdf_renderer.py:  470: printSegment: Individual: MACD | Solo 6 features de convergencia/divergencia | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,445:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,447:      pdf_renderer.py:  470: printSegment: | 41-50 | Individual: BB | Solo 9 features
+   DEBUG: 2026-05-01 23:34:53,448:      pdf_renderer.py:  470: printSegment: de Bandas de Bollinger | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,449:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,449:      pdf_renderer.py:  470: printSegment: | 51-60 | Individual: SO | Solo 6 features de Oscilador Estocástico | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,450:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,453:      pdf_renderer.py:  470: printSegment: | 61-70 |
+   DEBUG: 2026-05-01 23:34:53,453:      pdf_renderer.py:  470: printSegment: Individual: ATR | Solo 3 features de rango medio verdadero | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,454:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,456:      pdf_renderer.py:  470: printSegment: | 71-80 | Individual: RV | Solo 3 features de
+   DEBUG: 2026-05-01 23:34:53,457:      pdf_renderer.py:  470: printSegment: volatilidad rodante | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,457:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,458:      pdf_renderer.py:  470: printSegment: | 81-90 | Individual: Lagged | Solo 3 features de valores retardados | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,459:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,460:      pdf_renderer.py:  470: printSegment: | 91-100 |
+   DEBUG: 2026-05-01 23:34:53,460:      pdf_renderer.py:  470: printSegment: Individual: Diff 
+   DEBUG: 2026-05-01 23:34:53,461:      pdf_renderer.py:  470: printSegment: &
+   DEBUG: 2026-05-01 23:34:53,462:      pdf_renderer.py:  470: printSegment:  Change | Solo 2 features de diferencias | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,463:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,465:      pdf_renderer.py:  470: printSegment: | 101-110 | Individual: Temporal Decomp. | Solo
+   DEBUG: 2026-05-01 23:34:53,466:      pdf_renderer.py:  470: printSegment: 6 features de descomposición temporal | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,467:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,469:      pdf_renderer.py:  470: printSegment: | 111-120 | Individual: TDE | Solo 6 features de time delay
+   DEBUG: 2026-05-01 23:34:53,470:      pdf_renderer.py:  470: printSegment: embedding | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,471:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,472:      pdf_renderer.py:  470: printSegment: | 121-130 | Baseline | Solo 10 features OHLC básicas (sin indicadores técnicos) | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,472:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,475:      pdf_renderer.py:  470: printSegment: | 131-140 |
+   DEBUG: 2026-05-01 23:34:53,476:      pdf_renderer.py:  470: printSegment: Ablación: Base+Trend | Baseline + SMA + EMA + MACD (22 features) | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,477:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,480:      pdf_renderer.py:  470: printSegment: | 141-150 | Ablación:
+   DEBUG: 2026-05-01 23:34:53,481:      pdf_renderer.py:  470: printSegment: Base+Momentum | Baseline + RSI + SO (19 features) | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,481:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,484:      pdf_renderer.py:  470: printSegment: | 151-160 | Ablación: Base+Volatility | Baseline + BB
+   DEBUG: 2026-05-01 23:34:53,484:      pdf_renderer.py:  470: printSegment: + ATR + RV (25 features) | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,485:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,487:      pdf_renderer.py:  470: printSegment: | 161-170 | Ablación: Base+Statistical | Baseline + Lagged + Diff + TD + TDE (27
+   DEBUG: 2026-05-01 23:34:53,488:      pdf_renderer.py:  470: printSegment: features) | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,489:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,490:      pdf_renderer.py:  470: printSegment: | 171-180 | Ablación: Base+ALL | Baseline + TODOS los indicadores (63 features) | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,490:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,493:      pdf_renderer.py:  470: printSegment: |
+   DEBUG: 2026-05-01 23:34:53,494:      pdf_renderer.py:  470: printSegment: 181-190 | Pure Trend | SOLO SMA + EMA + MACD (sin baseline, 12 features) | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,495:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,497:      pdf_renderer.py:  470: printSegment: | 191-200 | Pure
+   DEBUG: 2026-05-01 23:34:53,498:      pdf_renderer.py:  470: printSegment: Momentum | SOLO RSI + SO (sin baseline, 9 features) | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,499:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,501:      pdf_renderer.py:  470: printSegment: | 201-210 | Pure Volatility | SOLO BB + ATR + RV
+   DEBUG: 2026-05-01 23:34:53,503:      pdf_renderer.py:  470: printSegment: (sin baseline, 15 features) | 1 | 10 |
+   DEBUG: 2026-05-01 23:34:53,504:      pdf_renderer.py:  470: printSegment: ¿Qué pasa dentro de cada entrenamiento?
+   DEBUG: 2026-05-01 23:34:53,505:      pdf_renderer.py:  470: printSegment: Para cada uno de los 1.890 entrenamientos, el script ejecuta los siguientes pasos:
+   DEBUG: 2026-05-01 23:34:53,506:      pdf_renderer.py:  470: printSegment: Paso 1: Preparación de datos
+   DEBUG: 2026-05-01 23:34:53,507:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2026-05-01 23:34:53,509:      pdf_renderer.py:  470: printSegment: Carga el CSV del activo (por ejemplo, Gold.csv) con datos históricos diarios (OHLCV: Open, High,
+   DEBUG: 2026-05-01 23:34:53,510:      pdf_renderer.py:  470: printSegment: Low, Close, Volume).
+   DEBUG: 2026-05-01 23:34:53,511:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2026-05-01 23:34:53,511:      pdf_renderer.py:  470: printSegment: Calcula 
+   DEBUG: 2026-05-01 23:34:53,512:      pdf_renderer.py:  470: printSegment: todos
+   DEBUG: 2026-05-01 23:34:53,514:      pdf_renderer.py:  470: printSegment:  los indicadores técnicos (SMA, EMA, RSI, MACD, BB, SO, ATR, RV, Lagged, Diff,
+   DEBUG: 2026-05-01 23:34:53,515:      pdf_renderer.py:  470: printSegment: TD, TDE) y las features OHLC básicas.
+   DEBUG: 2026-05-01 23:34:53,515:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2026-05-01 23:34:53,515:      pdf_renderer.py:  470: printSegment: Filtra
+   DEBUG: 2026-05-01 23:34:53,517:      pdf_renderer.py:  470: printSegment:  solo las columnas que corresponden a la familia de features de ese escenario (por ejemplo, si
+   DEBUG: 2026-05-01 23:34:53,518:      pdf_renderer.py:  470: printSegment: el escenario es 
+   DEBUG: 2026-05-01 23:34:53,518:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,518:      pdf_renderer.py:  470: printSegment: SMA
+   DEBUG: 2026-05-01 23:34:53,519:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,519:      pdf_renderer.py:  470: printSegment: , solo mantiene las 3 columnas de SMA).
+   DEBUG: 2026-05-01 23:34:53,520:      pdf_renderer.py:  470: printSegment:  4 
+   DEBUG: 2026-05-01 23:34:53,520:      pdf_renderer.py:  470: printSegment: Divide los datos en:
+   DEBUG: 2026-05-01 23:34:53,521:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,521:      pdf_renderer.py:  470: printSegment: Entrenamiento
+   DEBUG: 2026-05-01 23:34:53,522:      pdf_renderer.py:  470: printSegment: : del 01/06/2023 al 30/06/2025 (~2 años)
+   DEBUG: 2026-05-01 23:34:53,522:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,523:      pdf_renderer.py:  470: printSegment: Validación
+   DEBUG: 2026-05-01 23:34:53,523:      pdf_renderer.py:  470: printSegment: : del 01/07/2025 al 13-15/03/2026 (~8.5 meses)
+   DEBUG: 2026-05-01 23:34:53,524:      pdf_renderer.py:  470: printSegment:  5 
+   DEBUG: 2026-05-01 23:34:53,527:      pdf_renderer.py:  470: printSegment: Normaliza las features del rango de entrenamiento con MinMaxScaler (0 a 1) y aplica la misma
+   DEBUG: 2026-05-01 23:34:53,527:      pdf_renderer.py:  470: printSegment: escala a validación. Esto previene el 
+   DEBUG: 2026-05-01 23:34:53,528:      pdf_renderer.py:  470: printSegment: data leakage
+   DEBUG: 2026-05-01 23:34:53,529:      pdf_renderer.py:  470: printSegment:  (que el modelo vea información del futuro durante
+   DEBUG: 2026-05-01 23:34:53,529:      pdf_renderer.py:  470: printSegment: el entrenamiento).
+   DEBUG: 2026-05-01 23:34:53,530:      pdf_renderer.py:  470: printSegment: Paso 2: Entrenamiento del agente
+   DEBUG: 2026-05-01 23:34:53,531:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2026-05-01 23:34:53,531:      pdf_renderer.py:  470: printSegment: Fija la semilla aleatoria (42, 123 o 456) en Python, NumPy y PyTorch para garantizar 
+   DEBUG: 2026-05-01 23:34:53,532:      pdf_renderer.py:  470: printSegment: reproducibilidad
+   DEBUG: 2026-05-01 23:34:53,533:      pdf_renderer.py:  470: printSegment: .
+   DEBUG: 2026-05-01 23:34:53,533:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2026-05-01 23:34:53,534:      pdf_renderer.py:  470: printSegment: Crea un entorno de trading (un MDP) donde:
+   DEBUG: 2026-05-01 23:34:53,534:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,535:      pdf_renderer.py:  470: printSegment: El 
+   DEBUG: 2026-05-01 23:34:53,535:      pdf_renderer.py:  470: printSegment: estado
+   DEBUG: 2026-05-01 23:34:53,536:      pdf_renderer.py:  470: printSegment:  es el vector de features del día actual.
+   DEBUG: 2026-05-01 23:34:53,536:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,537:      pdf_renderer.py:  470: printSegment: Las 
+   DEBUG: 2026-05-01 23:34:53,537:      pdf_renderer.py:  470: printSegment: acciones
+   DEBUG: 2026-05-01 23:34:53,538:      pdf_renderer.py:  470: printSegment:  son: mantener, comprar o vender.
+   DEBUG: 2026-05-01 23:34:53,539:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,539:      pdf_renderer.py:  470: printSegment: La 
+   DEBUG: 2026-05-01 23:34:53,540:      pdf_renderer.py:  470: printSegment: recompensa
+   DEBUG: 2026-05-01 23:34:53,540:      pdf_renderer.py:  470: printSegment:  está ligada al rendimiento diario penalizado por el riesgo.
+   DEBUG: 2026-05-01 23:34:53,541:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,542:      pdf_renderer.py:  470: printSegment: Existe un 
+   DEBUG: 2026-05-01 23:34:53,542:      pdf_renderer.py:  470: printSegment: coste de transacción
+   DEBUG: 2026-05-01 23:34:53,543:      pdf_renderer.py:  470: printSegment:  realista (0.01% para acciones/commodities, 0.02%
+   DEBUG: 2026-05-01 23:34:53,544:      pdf_renderer.py:  470: printSegment: para criptomonedas).
+   DEBUG: 2026-05-01 23:34:53,544:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2026-05-01 23:34:53,545:      pdf_renderer.py:  470: printSegment: El agente (DQN, PPO o A2C) interactúa con el entorno durante 
+   DEBUG: 2026-05-01 23:34:53,546:      pdf_renderer.py:  470: printSegment: ~100.000 pasos
+   DEBUG: 2026-05-01 23:34:53,547:      pdf_renderer.py:  470: printSegment:  (timesteps),
+   DEBUG: 2026-05-01 23:34:53,547:      pdf_renderer.py:  470: printSegment: aprendiendo a maximizar la recompensa acumulada.
+   DEBUG: 2026-05-01 23:34:53,548:      pdf_renderer.py:  470: printSegment: Paso 3: Evaluación
+   DEBUG: 2026-05-01 23:34:53,549:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2026-05-01 23:34:53,549:      pdf_renderer.py:  470: printSegment: Una vez entrenado, el agente se evalúa sobre los datos de validación (datos que 
+   DEBUG: 2026-05-01 23:34:53,550:      pdf_renderer.py:  470: printSegment: nunca ha visto
+   DEBUG: 2026-05-01 23:34:53,551:      pdf_renderer.py:  470: printSegment: 
+   DEBUG: 2026-05-01 23:34:53,551:      pdf_renderer.py:  470: printSegment: durante el entrenamiento).
+   DEBUG: 2026-05-01 23:34:53,551:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2026-05-01 23:34:53,552:      pdf_renderer.py:  470: printSegment: El agente opera día a día sobre los datos de validación, empezando con 1.000€ virtuales.
+   DEBUG: 2026-05-01 23:34:53,568:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2026-05-01 23:34:53,569:      pdf_renderer.py:  470: printSegment: Se registran todas las métricas de rendimiento.
+   DEBUG: 2026-05-01 23:34:53,570:      pdf_renderer.py:  470: printSegment: Paso 4: Almacenamiento
+   DEBUG: 2026-05-01 23:34:53,571:      pdf_renderer.py:  470: printSegment: Los resultados se guardan en un archivo JSON con las siguientes métricas (media y desviación de las 3 semillas):
+   DEBUG: 2026-05-01 23:34:53,572:      pdf_renderer.py:  470: printSegment: | Métrica | Qué mide | Interpretación |
+   DEBUG: 2026-05-01 23:34:53,573:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,573:      pdf_renderer.py:  470: printSegment: |---------|----------|----------------|
+   DEBUG: 2026-05-01 23:34:53,574:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,575:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2026-05-01 23:34:53,576:      pdf_renderer.py:  470: printSegment: total_return
+   DEBUG: 2026-05-01 23:34:53,578:      pdf_renderer.py:  470: printSegment:  | Rendimiento total (%) |
+   DEBUG: 2026-05-01 23:34:53,579:      pdf_renderer.py:  470: printSegment: +0.30 = ganó un 30% |
+   DEBUG: 2026-05-01 23:34:53,580:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,581:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2026-05-01 23:34:53,581:      pdf_renderer.py:  470: printSegment: sharpe_ratio
+   DEBUG: 2026-05-01 23:34:53,582:      pdf_renderer.py:  470: printSegment:  | Rendimiento ajustado al riesgo | >1 = bueno, >2 = muy bueno, 
+   DEBUG: 2026-05-01 23:34:53,583:      pdf_renderer.py:  470: printSegment: <
+   DEBUG: 2026-05-01 23:34:53,584:      pdf_renderer.py:  470: printSegment: 0 =
+   DEBUG: 2026-05-01 23:34:53,585:      pdf_renderer.py:  470: printSegment: pierde dinero |
+   DEBUG: 2026-05-01 23:34:53,585:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,586:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2026-05-01 23:34:53,587:      pdf_renderer.py:  470: printSegment: sortino_ratio
+   DEBUG: 2026-05-01 23:34:53,588:      pdf_renderer.py:  470: printSegment:  | Como Sharpe pero solo penaliza pérdidas | Más justo que Sharpe |
+   DEBUG: 2026-05-01 23:34:53,588:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,589:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2026-05-01 23:34:53,590:      pdf_renderer.py:  470: printSegment: max_drawdown
+   DEBUG: 2026-05-01 23:34:53,591:      pdf_renderer.py:  470: printSegment:  | Máxima pérdida desde un pico | -0.20 = en algún momento perdió un 20% |
+   DEBUG: 2026-05-01 23:34:53,591:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,592:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2026-05-01 23:34:53,593:      pdf_renderer.py:  470: printSegment: win_rate
+   DEBUG: 2026-05-01 23:34:53,595:      pdf_renderer.py:  470: printSegment:  | % de días
+   DEBUG: 2026-05-01 23:34:53,596:      pdf_renderer.py:  470: printSegment: con rendimiento positivo | >0.50 = más días ganando que perdiendo |
+   DEBUG: 2026-05-01 23:34:53,596:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,597:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2026-05-01 23:34:53,598:      pdf_renderer.py:  470: printSegment: trade_count
+   DEBUG: 2026-05-01 23:34:53,599:      pdf_renderer.py:  470: printSegment:  | Número de operaciones
+   DEBUG: 2026-05-01 23:34:53,600:      pdf_renderer.py:  470: printSegment: realizadas | Indica actividad del agente |
+   DEBUG: 2026-05-01 23:34:53,601:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,602:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2026-05-01 23:34:53,602:      pdf_renderer.py:  470: printSegment: total_transaction_costs
+   DEBUG: 2026-05-01 23:34:53,604:      pdf_renderer.py:  470: printSegment:  | Costes totales por operar | Realismo de
+   DEBUG: 2026-05-01 23:34:53,604:      pdf_renderer.py:  470: printSegment: la simulación |
+   DEBUG: 2026-05-01 23:34:53,605:      pdf_renderer.py:  470: printSegment:  
+   DEBUG: 2026-05-01 23:34:53,606:      pdf_renderer.py:  470: printSegment: | 
+   DEBUG: 2026-05-01 23:34:53,606:      pdf_renderer.py:  470: printSegment: final_net_worth
+   DEBUG: 2026-05-01 23:34:53,607:      pdf_renderer.py:  470: printSegment:  | Valor final de la cartera (partiendo de 1.000€) | 1.300 = terminó con 1.300€ |
+   DEBUG: 2026-05-01 23:34:53,609:      pdf_renderer.py:  470: printSegment: ¿Para qué sirven las 3 semillas?
+   DEBUG: 2026-05-01 23:34:53,610:      pdf_renderer.py:  470: printSegment: Un problema fundamental del Deep Learning es que los resultados dependen de la 
+   DEBUG: 2026-05-01 23:34:53,611:      pdf_renderer.py:  470: printSegment: inicialización aleatoria
+   DEBUG: 2026-05-01 23:34:53,616:      pdf_renderer.py:  470: printSegment:  de los
+   DEBUG: 2026-05-01 23:34:53,619:      pdf_renderer.py:  470: printSegment: pesos de la red neuronal. Si entrenas el mismo modelo dos veces con los mismos datos pero diferente semilla
+   DEBUG: 2026-05-01 23:34:53,620:      pdf_renderer.py:  470: printSegment: aleatoria, puedes obtener resultados ligeramente distintos.
+   DEBUG: 2026-05-01 23:34:53,621:      pdf_renderer.py:  470: printSegment: Al repetir cada entrenamiento con 3 semillas (42, 123, 456), podemos:
+   DEBUG: 2026-05-01 23:34:53,622:      pdf_renderer.py:  470: printSegment:  1 
+   DEBUG: 2026-05-01 23:34:53,622:      pdf_renderer.py:  470: printSegment: Calcular la media
+   DEBUG: 2026-05-01 23:34:53,623:      pdf_renderer.py:  470: printSegment:  (resultado 
+   DEBUG: 2026-05-01 23:34:53,623:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,624:      pdf_renderer.py:  470: printSegment: esperado
+   DEBUG: 2026-05-01 23:34:53,624:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,625:      pdf_renderer.py:  470: printSegment:  del modelo).
+   DEBUG: 2026-05-01 23:34:53,625:      pdf_renderer.py:  470: printSegment:  2 
+   DEBUG: 2026-05-01 23:34:53,625:      pdf_renderer.py:  470: printSegment: Calcular la desviación estándar
+   DEBUG: 2026-05-01 23:34:53,626:      pdf_renderer.py:  470: printSegment:  (cuánto varía entre ejecuciones).
+   DEBUG: 2026-05-01 23:34:53,626:      pdf_renderer.py:  470: printSegment:  3 
+   DEBUG: 2026-05-01 23:34:53,627:      pdf_renderer.py:  470: printSegment: Detectar resultados espurios
+   DEBUG: 2026-05-01 23:34:53,628:      pdf_renderer.py:  470: printSegment:  (si un modelo da +50% con una semilla pero -10% con otra, no es
+   DEBUG: 2026-05-01 23:34:53,628:      pdf_renderer.py:  470: printSegment: fiable).
+   DEBUG: 2026-05-01 23:34:53,629:      pdf_renderer.py:  470: printSegment: Esto es lo que hace tu benchmark 
+   DEBUG: 2026-05-01 23:34:53,629:      pdf_renderer.py:  470: printSegment: reproducible
+   DEBUG: 2026-05-01 23:34:53,630:      pdf_renderer.py:  470: printSegment:  y 
+   DEBUG: 2026-05-01 23:34:53,630:      pdf_renderer.py:  470: printSegment: estadísticamente robusto
+   DEBUG: 2026-05-01 23:34:53,631:      pdf_renderer.py:  470: printSegment: , que es exactamente lo que exige tu
+   DEBUG: 2026-05-01 23:34:53,631:      pdf_renderer.py:  470: printSegment: anteproyecto.
+   DEBUG: 2026-05-01 23:34:53,632:      pdf_renderer.py:  470: printSegment: ¿Qué son los 3 algoritmos y en qué se diferencian?
+   DEBUG: 2026-05-01 23:34:53,633:      pdf_renderer.py:  470: printSegment: Los tres algoritmos comparten el mismo entorno, los mismos datos y las mismas métricas. La única diferencia es 
+   DEBUG: 2026-05-01 23:34:53,634:      pdf_renderer.py:  470: printSegment: cómo
+   DEBUG: 2026-05-01 23:34:53,634:      pdf_renderer.py:  470: printSegment: aprenden
+   DEBUG: 2026-05-01 23:34:53,635:      pdf_renderer.py:  470: printSegment: :
+   DEBUG: 2026-05-01 23:34:53,635:      pdf_renderer.py:  470: printSegment: DQN (Deep Q-Network)
+   DEBUG: 2026-05-01 23:34:53,636:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,636:      pdf_renderer.py:  470: printSegment: Tipo
+   DEBUG: 2026-05-01 23:34:53,637:      pdf_renderer.py:  470: printSegment: : Value-based (basado en valores).
+   DEBUG: 2026-05-01 23:34:53,638:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,638:      pdf_renderer.py:  470: printSegment: Idea
+   DEBUG: 2026-05-01 23:34:53,640:      pdf_renderer.py:  470: printSegment: : Aprende una función Q(estado, acción) que estima la recompensa futura de cada acción. Elige
+   DEBUG: 2026-05-01 23:34:53,641:      pdf_renderer.py:  470: printSegment: siempre la acción con mayor Q.
+   DEBUG: 2026-05-01 23:34:53,642:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,642:      pdf_renderer.py:  470: printSegment: Ventaja
+   DEBUG: 2026-05-01 23:34:53,643:      pdf_renderer.py:  470: printSegment: : Estable, funciona bien con espacios de acción discretos (comprar/vender/mantener).
+   DEBUG: 2026-05-01 23:34:53,644:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,644:      pdf_renderer.py:  470: printSegment: Desventaja
+   DEBUG: 2026-05-01 23:34:53,645:      pdf_renderer.py:  470: printSegment: : Solo funciona con acciones discretas, puede ser lento en converger.
+   DEBUG: 2026-05-01 23:34:53,646:      pdf_renderer.py:  470: printSegment: PPO (Proximal Policy Optimization)
+   DEBUG: 2026-05-01 23:34:53,646:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,647:      pdf_renderer.py:  470: printSegment: Tipo
+   DEBUG: 2026-05-01 23:34:53,647:      pdf_renderer.py:  470: printSegment: : Policy-based (basado en política).
+   DEBUG: 2026-05-01 23:34:53,648:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,648:      pdf_renderer.py:  470: printSegment: Idea
+   DEBUG: 2026-05-01 23:34:53,650:      pdf_renderer.py:  470: printSegment: : Aprende directamente una política π(acción|estado) que dice la probabilidad de cada acción.
+   DEBUG: 2026-05-01 23:34:53,651:      pdf_renderer.py:  470: printSegment: Optimiza con un 
+   DEBUG: 2026-05-01 23:34:53,651:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,652:      pdf_renderer.py:  470: printSegment: clip
+   DEBUG: 2026-05-01 23:34:53,653:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,653:      pdf_renderer.py:  470: printSegment:  que evita cambios demasiado bruscos.
+   DEBUG: 2026-05-01 23:34:53,654:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,654:      pdf_renderer.py:  470: printSegment: Ventaja
+   DEBUG: 2026-05-01 23:34:53,655:      pdf_renderer.py:  470: printSegment: : Muy estable, el más popular en la industria, funciona con acciones continuas y discretas.
+   DEBUG: 2026-05-01 23:34:53,656:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,657:      pdf_renderer.py:  470: printSegment: Desventaja
+   DEBUG: 2026-05-01 23:34:53,657:      pdf_renderer.py:  470: printSegment: : Puede ser más lento que A2C.
+   DEBUG: 2026-05-01 23:34:53,658:      pdf_renderer.py:  470: printSegment: A2C (Advantage Actor-Critic)
+   DEBUG: 2026-05-01 23:34:53,658:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,659:      pdf_renderer.py:  470: printSegment: Tipo
+   DEBUG: 2026-05-01 23:34:53,660:      pdf_renderer.py:  470: printSegment: : Actor-Critic (híbrido).
+   DEBUG: 2026-05-01 23:34:53,660:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,661:      pdf_renderer.py:  470: printSegment: Idea
+   DEBUG: 2026-05-01 23:34:53,661:      pdf_renderer.py:  470: printSegment: : Combina dos redes: un 
+   DEBUG: 2026-05-01 23:34:53,662:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,663:      pdf_renderer.py:  470: printSegment: actor
+   DEBUG: 2026-05-01 23:34:53,663:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,664:      pdf_renderer.py:  470: printSegment:  (que elige acciones) y un 
+   DEBUG: 2026-05-01 23:34:53,664:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,665:      pdf_renderer.py:  470: printSegment: crítico
+   DEBUG: 2026-05-01 23:34:53,665:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,666:      pdf_renderer.py:  470: printSegment:  (que evalúa si la acción fue
+   DEBUG: 2026-05-01 23:34:53,667:      pdf_renderer.py:  470: printSegment: buena). El 
+   DEBUG: 2026-05-01 23:34:53,668:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,668:      pdf_renderer.py:  470: printSegment: advantage
+   DEBUG: 2026-05-01 23:34:53,669:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,670:      pdf_renderer.py:  470: printSegment:  mide si la acción fue mejor o peor que la media.
+   DEBUG: 2026-05-01 23:34:53,670:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,671:      pdf_renderer.py:  470: printSegment: Ventaja
+   DEBUG: 2026-05-01 23:34:53,672:      pdf_renderer.py:  470: printSegment: : Rápido, eficiente, buena convergencia.
+   DEBUG: 2026-05-01 23:34:53,672:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,673:      pdf_renderer.py:  470: printSegment: Desventaja
+   DEBUG: 2026-05-01 23:34:53,674:      pdf_renderer.py:  470: printSegment: : Puede ser menos estable que PPO en algunos entornos.
+   DEBUG: 2026-05-01 23:34:53,674:      pdf_renderer.py:  470: printSegment: ¿Por qué usar los 3?
+   DEBUG: 2026-05-01 23:34:53,675:      pdf_renderer.py:  470: printSegment:  Porque tu TFG busca conclusiones 
+   DEBUG: 2026-05-01 23:34:53,676:      pdf_renderer.py:  470: printSegment: independientes del algoritmo
+   DEBUG: 2026-05-01 23:34:53,681:      pdf_renderer.py:  470: printSegment: . Si la familia SMA es la
+   DEBUG: 2026-05-01 23:34:53,682:      pdf_renderer.py:  470: printSegment: mejor tanto con DQN como con PPO y A2C, esa conclusión es mucho más fuerte que si solo lo pruebas con un
+   DEBUG: 2026-05-01 23:34:53,683:      pdf_renderer.py:  470: printSegment: algoritmo.
+   DEBUG: 2026-05-01 23:34:53,685:      pdf_renderer.py:  470: printSegment: ¿Qué es la ablación y cómo se interpreta?
+   DEBUG: 2026-05-01 23:34:53,686:      pdf_renderer.py:  470: printSegment: La ablación es una técnica experimental prestada de la neurociencia (donde literalmente se 
+   DEBUG: 2026-05-01 23:34:53,686:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,687:      pdf_renderer.py:  470: printSegment: ablaciona
+   DEBUG: 2026-05-01 23:34:53,688:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,691:      pdf_renderer.py:  470: printSegment:  = se elimina
+   DEBUG: 2026-05-01 23:34:53,692:      pdf_renderer.py:  470: printSegment: una parte del cerebro para ver qué función pierde). En machine learning, consiste en 
+   DEBUG: 2026-05-01 23:34:53,693:      pdf_renderer.py:  470: printSegment: añadir o quitar sistemáticamente
+   DEBUG: 2026-05-01 23:34:53,693:      pdf_renderer.py:  470: printSegment: componentes
+   DEBUG: 2026-05-01 23:34:53,694:      pdf_renderer.py:  470: printSegment:  para medir su impacto.
+   DEBUG: 2026-05-01 23:34:53,695:      pdf_renderer.py:  470: printSegment: Tu benchmark implementa la ablación en 4 niveles:
+   DEBUG: 2026-05-01 23:34:53,696:      pdf_renderer.py:  470: printSegment: Nivel 1: Baseline (punto de control)
+   DEBUG: 2026-05-01 23:34:53,697:      pdf_renderer.py:  470: printSegment: El modelo solo ve datos OHLC crudos (log-returns, cambios porcentuales, rangos). 
+   DEBUG: 2026-05-01 23:34:53,698:      pdf_renderer.py:  470: printSegment: No ve ningún indicador técnico.
+   DEBUG: 2026-05-01 23:34:53,699:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,699:      pdf_renderer.py:  470: printSegment: Pregunta que responde
+   DEBUG: 2026-05-01 23:34:53,700:      pdf_renderer.py:  470: printSegment: : ¿Puede la IA aprender a operar solo viendo el precio?
+   DEBUG: 2026-05-01 23:34:53,700:      pdf_renderer.py:  470: printSegment: Nivel 2: Familias individuales
+   DEBUG: 2026-05-01 23:34:53,702:      pdf_renderer.py:  470: printSegment: El modelo ve solo una familia de indicadores (por ejemplo, solo SMA, o solo RSI), 
+   DEBUG: 2026-05-01 23:34:53,702:      pdf_renderer.py:  470: printSegment: sin el baseline
+   DEBUG: 2026-05-01 23:34:53,703:      pdf_renderer.py:  470: printSegment: .
+   DEBUG: 2026-05-01 23:34:53,703:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,704:      pdf_renderer.py:  470: printSegment: Pregunta que responde
+   DEBUG: 2026-05-01 23:34:53,704:      pdf_renderer.py:  470: printSegment: : ¿Qué indicador individual aporta más información útil por sí solo?
+   DEBUG: 2026-05-01 23:34:53,705:      pdf_renderer.py:  470: printSegment: Nivel 3a: Ablación con baseline (incremento)
+   DEBUG: 2026-05-01 23:34:53,706:      pdf_renderer.py:  470: printSegment: El modelo ve el baseline + un grupo temático completo de indicadores.
+   DEBUG: 2026-05-01 23:34:53,706:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,707:      pdf_renderer.py:  470: printSegment: Pregunta que responde
+   DEBUG: 2026-05-01 23:34:53,709:      pdf_renderer.py:  470: printSegment: : ¿Añadir indicadores de tendencia al baseline mejora el rendimiento? ¿Y los de
+   DEBUG: 2026-05-01 23:34:53,709:      pdf_renderer.py:  470: printSegment: volatilidad? ¿Y todos juntos?
+   DEBUG: 2026-05-01 23:34:53,710:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,710:      pdf_renderer.py:  470: printSegment: Interpretación clave
+   DEBUG: 2026-05-01 23:34:53,712:      pdf_renderer.py:  470: printSegment: : Si Base+Trend > Baseline, los indicadores de tendencia aportan información. Si
+   DEBUG: 2026-05-01 23:34:53,712:      pdf_renderer.py:  470: printSegment: Base+ALL 
+   DEBUG: 2026-05-01 23:34:53,713:      pdf_renderer.py:  470: printSegment: <
+   DEBUG: 2026-05-01 23:34:53,714:      pdf_renderer.py:  470: printSegment:  Base+Trend, meter demasiadas features perjudica (overfitting).
+   DEBUG: 2026-05-01 23:34:53,714:      pdf_renderer.py:  470: printSegment: Nivel 3b: Ablación pura (sin baseline)
+   DEBUG: 2026-05-01 23:34:53,715:      pdf_renderer.py:  470: printSegment: El modelo ve SOLO un grupo de indicadores, sin los datos OHLC básicos.
+   DEBUG: 2026-05-01 23:34:53,716:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,716:      pdf_renderer.py:  470: printSegment: Pregunta que responde
+   DEBUG: 2026-05-01 23:34:53,718:      pdf_renderer.py:  470: printSegment: : ¿Son los indicadores técnicos autosuficientes, o necesitan el precio crudo
+   DEBUG: 2026-05-01 23:34:53,718:      pdf_renderer.py:  470: printSegment: para funcionar?
+   DEBUG: 2026-05-01 23:34:53,719:      pdf_renderer.py:  470: printSegment: l
+   DEBUG: 2026-05-01 23:34:53,719:      pdf_renderer.py:  470: printSegment: Interpretación clave
+   DEBUG: 2026-05-01 23:34:53,720:      pdf_renderer.py:  470: printSegment: : Si Pure
+   DEBUG: 2026-05-01 23:34:53,720:      pdf_renderer.py:  470: printSegment: _
+   DEBUG: 2026-05-01 23:34:53,721:      pdf_renderer.py:  470: printSegment: Trend 
+   DEBUG: 2026-05-01 23:34:53,721:      pdf_renderer.py:  470: printSegment: <
+   DEBUG: 2026-05-01 23:34:53,722:      pdf_renderer.py:  470: printSegment:  Ablation
+   DEBUG: 2026-05-01 23:34:53,723:      pdf_renderer.py:  470: printSegment: _
+   DEBUG: 2026-05-01 23:34:53,724:      pdf_renderer.py:  470: printSegment: Trend, el baseline aporta información
+   DEBUG: 2026-05-01 23:34:53,724:      pdf_renderer.py:  470: printSegment: complementaria imprescindible.
+   DEBUG: 2026-05-01 23:34:53,725:      pdf_renderer.py:  470: printSegment: ¿Qué archivos se generan y dónde?
+   DEBUG: 2026-05-01 23:34:53,726:      pdf_renderer.py:  470: printSegment: Al terminar cada algoritmo, se crean:
+   DEBUG: 2026-05-01 23:34:53,727:      pdf_renderer.py:  470: printSegment: RL_outputs/
+   DEBUG: 2026-05-01 23:34:53,728:      pdf_renderer.py:  470: printSegment: ├── results/
+   DEBUG: 2026-05-01 23:34:53,740:      pdf_renderer.py:  470: printSegment: │   ├── json/                          ← Resultados detallados por
+   DEBUG: 2026-05-01 23:34:53,741:      pdf_renderer.py:  470: printSegment: escenario
+   DEBUG: 2026-05-01 23:34:53,742:      pdf_renderer.py:  470: printSegment: │   │   ├── 1_DQN_results.json         ← Escenario 1, algoritmo DQN
+   DEBUG: 2026-05-01 23:34:53,742:      pdf_renderer.py:  470: printSegment: │   │   ├── 1_PPO_results.json
+   DEBUG: 2026-05-01 23:34:53,743:      pdf_renderer.py:  470: printSegment: │   │   ├── 1_A2C_results.json
+   DEBUG: 2026-05-01 23:34:53,744:      pdf_renderer.py:  470: printSegment: │   │   ├── 2_DQN_results.json
+   DEBUG: 2026-05-01 23:34:53,744:      pdf_renderer.py:  470: printSegment: │   │   ├── ...
+   DEBUG: 2026-05-01 23:34:53,745:      pdf_renderer.py:  470: printSegment: │   │   └── 210_A2C_results.json       ← 630 archivos en total
+   DEBUG: 2026-05-01 23:34:53,746:      pdf_renderer.py:  470: printSegment: │   │
+   DEBUG: 2026-05-01 23:34:53,747:      pdf_renderer.py:  470: printSegment: │   ├── json_per_seed/                 ← Detalle de cada semilla
+   DEBUG: 2026-05-01 23:34:53,748:      pdf_renderer.py:  470: printSegment: individual
+   DEBUG: 2026-05-01 23:34:53,748:      pdf_renderer.py:  470: printSegment: │   │   ├── 1_per_seed.csv
+   DEBUG: 2026-05-01 23:34:53,749:      pdf_renderer.py:  470: printSegment: │   │   ├── ...
+   DEBUG: 2026-05-01 23:34:53,750:      pdf_renderer.py:  470: printSegment: │   │   └── 210_per_seed.csv
+   DEBUG: 2026-05-01 23:34:53,751:      pdf_renderer.py:  470: printSegment: │   │
+   DEBUG: 2026-05-01 23:34:53,752:      pdf_renderer.py:  470: printSegment: │   ├── DQL_batch_summary.csv          ← Resumen de todos los escenarios
+   DEBUG: 2026-05-01 23:34:53,752:      pdf_renderer.py:  470: printSegment: de DQN
+   DEBUG: 2026-05-01 23:34:53,754:      pdf_renderer.py:  470: printSegment: │   ├── PPO_batch_summary.csv          ← Resumen de todos los escenarios
+   DEBUG: 2026-05-01 23:34:53,754:      pdf_renderer.py:  470: printSegment: de PPO
+   DEBUG: 2026-05-01 23:34:53,756:      pdf_renderer.py:  470: printSegment: │   └── A2C_batch_summary.csv          ← Resumen de todos los escenarios
+   DEBUG: 2026-05-01 23:34:53,757:      pdf_renderer.py:  470: printSegment: de A2C
+   DEBUG: 2026-05-01 23:34:53,758:      pdf_renderer.py:  470: printSegment: ¿Cómo se interpreta un archivo JSON de resultados?
+   DEBUG: 2026-05-01 23:34:53,758:      pdf_renderer.py:  470: printSegment: Ejemplo del archivo 
+   DEBUG: 2026-05-01 23:34:53,759:      pdf_renderer.py:  470: printSegment: 1_A2C_results.json
+   DEBUG: 2026-05-01 23:34:53,760:      pdf_renderer.py:  470: printSegment:  (Escenario 1: Gold + SMA + A2C):
+   DEBUG: 2026-05-01 23:34:53,761:      pdf_renderer.py:  470: printSegment: total_return_mean: 0.4658 → El agente ganó un 46.58% de media
+   DEBUG: 2026-05-01 23:34:53,761:      pdf_renderer.py:  470: printSegment: total_return_std:  0.1656 → Con variación de ±16.56% entre semillas
+   DEBUG: 2026-05-01 23:34:53,762:      pdf_renderer.py:  470: printSegment: sharpe_ratio_mean: 2.42   → Excelente ratio riesgo/rendimiento
+   DEBUG: 2026-05-01 23:34:53,763:      pdf_renderer.py:  470: printSegment: max_drawdown_mean: -0.147 → En el peor momento perdió un 14.7%
+   DEBUG: 2026-05-01 23:34:53,764:      pdf_renderer.py:  470: printSegment: win_rate_mean:     0.585  → Ganó el 58.5% de los días
+   DEBUG: 2026-05-01 23:34:53,764:      pdf_renderer.py:  470: printSegment: trade_count_mean:  4.0    → Solo hizo 4 operaciones en 8.5 meses
+   DEBUG: 2026-05-01 23:34:53,765:      pdf_renderer.py:  470: printSegment: final_net_worth:   1465€  → Empezó con 1000€, terminó con 1465€
+   DEBUG: 2026-05-01 23:34:53,766:      pdf_renderer.py:  470: printSegment: ¿Cómo encaja esto en tu memoria del TFG?
+   DEBUG: 2026-05-01 23:34:53,767:      pdf_renderer.py:  470: printSegment: En tu memoria, la Fase 1 corresponde a la sección de 
+   DEBUG: 2026-05-01 23:34:53,767:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,768:      pdf_renderer.py:  470: printSegment: Experimentación
+   DEBUG: 2026-05-01 23:34:53,769:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,769:      pdf_renderer.py:  470: printSegment:  o 
+   DEBUG: 2026-05-01 23:34:53,770:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,770:      pdf_renderer.py:  470: printSegment: Resultados
+   DEBUG: 2026-05-01 23:34:53,771:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,771:      pdf_renderer.py:  470: printSegment: . Podrás escribir:
+   DEBUG: 2026-05-01 23:34:53,772:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,799:      pdf_renderer.py:  470: printSegment: Se ejecutaron 1.890 entrenamientos independientes, combinando 3 algoritmos DRL (DQN, PPO,
+   DEBUG: 2026-05-01 23:34:53,816:      pdf_renderer.py:  470: printSegment: A2C) con 21 configuraciones de features sobre 10 activos financieros. Cada configuración se repitió
+   DEBUG: 2026-05-01 23:34:53,823:      pdf_renderer.py:  470: printSegment: con 3 semillas aleatorias para garantizar reproducibilidad estadística. Los datos se dividieron
+   DEBUG: 2026-05-01 23:34:53,824:      pdf_renderer.py:  470: printSegment: temporalmente en entrenamiento (junio 2023 — junio 2025) y validación out-of-sample (julio 2025 — marzo
+   DEBUG: 2026-05-01 23:34:53,835:      pdf_renderer.py:  470: printSegment: 2026).
+   DEBUG: 2026-05-01 23:34:53,836:      pdf_renderer.py:  470: printSegment: "
+   DEBUG: 2026-05-01 23:34:53,836:      pdf_renderer.py:  470: printSegment: Y después de ejecutar 
+   DEBUG: 2026-05-01 23:34:53,837:      pdf_renderer.py:  470: printSegment: analyze_results.py
+   DEBUG: 2026-05-01 23:34:53,841:      pdf_renderer.py:  470: printSegment:  (la Fase 2), podrás añadir las tablas, gráficos y tests estadísticos que
+   DEBUG: 2026-05-01 23:34:53,842:      pdf_renderer.py:  470: printSegment: respalden tus conclusiones sobre qué features importan realmente en DRL para trading.
+   DEBUG: 2026-05-01 23:34:53,843:      pdf_renderer.py:  470: printSegment: Resumen visual del flujo completo
+   DEBUG: 2026-05-01 23:34:53,844:      pdf_renderer.py:  470: printSegment: DATOS CRUDOS (10 CSVs)
+   DEBUG: 2026-05-01 23:34:53,845:      pdf_renderer.py:  470: printSegment:         │
+   DEBUG: 2026-05-01 23:34:53,845:      pdf_renderer.py:  470: printSegment:         ▼
+   DEBUG: 2026-05-01 23:34:53,860:      pdf_renderer.py:  470: printSegment: FEATURES (12 indicadores técnicos + OHLC)
+   DEBUG: 2026-05-01 23:34:53,861:      pdf_renderer.py:  470: printSegment:         │
+   DEBUG: 2026-05-01 23:34:53,861:      pdf_renderer.py:  470: printSegment:         ▼
+   DEBUG: 2026-05-01 23:34:53,862:      pdf_renderer.py:  470: printSegment: ESCENARIOS (210 combinaciones activo × familia)
+   DEBUG: 2026-05-01 23:34:53,863:      pdf_renderer.py:  470: printSegment:         │
+   DEBUG: 2026-05-01 23:34:53,864:      pdf_renderer.py:  470: printSegment:         ├── DQN.py ──→ 210 × 3 seeds = 630 entrenamientos ──→ JSONs + CSV
+   DEBUG: 2026-05-01 23:34:53,866:      pdf_renderer.py:  470: printSegment:         ├── PPO.py ──→ 210 × 3 seeds = 630 entrenamientos ──→ JSONs + CSV
+   DEBUG: 2026-05-01 23:34:53,867:      pdf_renderer.py:  470: printSegment:         └── A2C.py ──→ 210 × 3 seeds = 630 entrenamientos ──→ JSONs + CSV
+   DEBUG: 2026-05-01 23:34:53,868:      pdf_renderer.py:  470: printSegment:                                                                   │
+   DEBUG: 2026-05-01 23:34:53,869:      pdf_renderer.py:  470: printSegment:                                                                   ▼
+   DEBUG: 2026-05-01 23:34:53,870:      pdf_renderer.py:  470: printSegment:                                                    
+   DEBUG: 2026-05-01 23:34:53,871:      pdf_renderer.py:  470: printSegment: analyze_results.py
+   DEBUG: 2026-05-01 23:34:53,872:      pdf_renderer.py:  470: printSegment:                                                           │
+   DEBUG: 2026-05-01 23:34:53,873:      pdf_renderer.py:  470: printSegment:                                                           ▼
+   DEBUG: 2026-05-01 23:34:53,874:      pdf_renderer.py:  470: printSegment:                                             TABLAS + GRÁFICOS +
+   DEBUG: 2026-05-01 23:34:53,875:      pdf_renderer.py:  470: printSegment: TESTS
+   DEBUG: 2026-05-01 23:34:53,876:      pdf_renderer.py:  470: printSegment:                                             (para la memoria del
+   DEBUG: 2026-05-01 23:34:53,877:      pdf_renderer.py:  470: printSegment: TFG)
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 0, [1, 'Guía Técnica del Benchmark DRL — Fase 1: Ejecución Masiva', 1, 68.0]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 1, [2, '¿Qué está haciendo tu ordenador ahora mismo?', 1, 106.0]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 2, [2, '¿Qué es un escenario?', 1, 211.60000000000002]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 3, [3, 'Desglose de los 210 escenarios', 1, 364.8]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 4, [2, '¿Qué pasa dentro de cada entrenamiento?', 1, 616.0]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 5, [3, 'Paso 1: Preparación de datos', 1, 667.1999999999999]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 6, [3, 'Paso 2: Entrenamiento del agente', 2, 224.4]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 7, [3, 'Paso 3: Evaluación', 2, 397.2]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 8, [3, 'Paso 4: Almacenamiento', 2, 485.99999999999994]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 9, [2, '¿Para qué sirven las 3 semillas?', 2, 635.1999999999999]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 10, [2, '¿Qué son los 3 algoritmos y en qué se diferencian?', 3, 188.8]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 11, [3, 'DQN (Deep Q-Network)', 3, 252.0]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 12, [3, 'PPO (Proximal Policy Optimization)', 3, 352.79999999999995]
+   DEBUG: 2026-05-01 23:34:53,878:      pdf_renderer.py:   53: 13, [3, 'A2C (Advantage Actor-Critic)', 3, 453.5999999999999]
+   DEBUG: 2026-05-01 23:34:53,879:      pdf_renderer.py:   53: 14, [2, '¿Qué es la ablación y cómo se interpreta?', 3, 608.7999999999998]
+   DEBUG: 2026-05-01 23:34:53,879:      pdf_renderer.py:   53: 15, [3, 'Nivel 1: Baseline (punto de control)', 3, 701.9999999999998]
+   DEBUG: 2026-05-01 23:34:53,879:      pdf_renderer.py:   53: 16, [3, 'Nivel 2: Familias individuales', 4, 128.4]
+   DEBUG: 2026-05-01 23:34:53,879:      pdf_renderer.py:   53: 17, [3, 'Nivel 3a: Ablación con baseline (incremento)', 4, 199.20000000000002]
+   DEBUG: 2026-05-01 23:34:53,879:      pdf_renderer.py:   53: 18, [3, 'Nivel 3b: Ablación pura (sin baseline)', 4, 306.0]
+   DEBUG: 2026-05-01 23:34:53,879:      pdf_renderer.py:   53: 19, [2, '¿Qué archivos se generan y dónde?', 4, 425.2]
+   DEBUG: 2026-05-01 23:34:53,879:      pdf_renderer.py:   53: 20, [2, '¿Cómo se interpreta un archivo JSON de resultados?', 5, 128.8]
+   DEBUG: 2026-05-01 23:34:53,879:      pdf_renderer.py:   53: 21, [2, '¿Cómo encaja esto en tu memoria del TFG?', 5, 288.40000000000003]
+   DEBUG: 2026-05-01 23:34:53,879:      pdf_renderer.py:   53: 22, [2, 'Resumen visual del flujo completo', 5, 454.00000000000006]

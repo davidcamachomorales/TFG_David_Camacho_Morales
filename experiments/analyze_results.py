@@ -3,7 +3,7 @@ Read JSON results from DQN.py, PPO.py and A2C.py
 and produce comparative tables, boxplots, heatmaps and statistical tests
 
 To use it->
-    cd folder_algoritmos
+    cd experiments
     python analyze_results.py
 """
 
@@ -23,7 +23,7 @@ warnings.filterwarnings("ignore")
 # Configuration
 #---------------------------------------------------------------
 
-RESULTS_DIR = '../RL_outputs/results'
+RESULTS_DIR = f'{PROJECT_ROOT}/results'
 JSON_DIR = os.path.join(RESULTS_DIR, 'json')
 OUTPUT_DIR = os.path.join(RESULTS_DIR, 'analysis')
 PLOT_DIR = os.path.join(OUTPUT_DIR, 'plots')
@@ -557,7 +557,7 @@ def run_statistical_tests(df):
                 'category': FAMILY_CATEGORY.get(fam, ''),
                 'mean_sharpe_family': np.mean(f_vals),
                 'mean_sharpe_baseline': np.mean(b),
-                'diff': np.mean(f_vals) - np.mean(b),
+                'dif': np.mean(f_vals) - np.mean(b),
                 'direction': direction,
                 'p_value': p_value,
                 'significance': sig,

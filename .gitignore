@@ -1,6 +1,11 @@
-venv/
 __pycache__/
+*.pyc
 .DS_Store
-RL_outputs/
-datasets_tfg/
-mdpdf.log
+__MACOSX/
+.venv/
+venv/
+results/
+data/
+env/
+.vscode/
+.ipynb_checkpoints/

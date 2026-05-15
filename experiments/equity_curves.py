@@ -24,7 +24,9 @@ from stable_baselines3 import DQN, PPO, A2C
 from stable_baselines3.common.vec_env import DummyVecEnv
 
 import sys
-sys.path.append('../')
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 from src.trading_env_improved import ImprovedTradingEnv
 from src.data_utils import load_dataset, prepare_features, split_train_val
@@ -71,7 +73,7 @@ FAMILY_COLORS = {
     'RV': '#bfef45',
     'lagged': '#fabed4',
     'difference_and_change': '#469990',
-    'temporal_decomposition': '#dcbeff',
+    'temporal_decomposition': '#dcbef0',
     'time_delay_embedding': '#9A6324',
     'baseline': '#808000',
     'ablation_statistical': '#000075',  
@@ -193,8 +195,8 @@ def plot_equity_curves(algo_name, family_curves, asset_name):
     plt.subplots_adjust(right=0.82)
     
     # Save
-    os.makedirs('../RL_outputs/results/plot', exist_ok=True)
-    filepath = f'../RL_outputs/results/plot/{algo_name}_{asset_name}_equity_curves.png'
+    os.makedirs(f'{PROJECT_ROOT}/results/plot', exist_ok=True)
+    filepath = f'{PROJECT_ROOT}/results/plot/{algo_name}_{asset_name}_equity_curves.png'
     fig.savefig(filepath, dpi=150, bbox_inches='tight')
     plt.close(fig)
     print(f" Saved: {filepath}")
@@ -218,7 +220,7 @@ df_with_features = prepare_features(df_raw)
 print(f"  {len(df_with_features)} rows, {len(df_with_features.columns)} columns")
 
 # Load feature families
-with open('../config_files/feature_family.json') as f:
+with open(f'{PROJECT_ROOT}/config/feature_family.json') as f:
     feature_family = json.load(f)
 
 families = {}
@@ -306,5 +308,5 @@ for algo_name in algorithms:
     plot_equity_curves(algo_name, family_curves, ASSET)
 
 print(f"\n{'-'*70}")
-print("All plots generated in RL_outputs/results/plot/")
+print("All plots generated in results/plot/")
 print(f"{'-'*70}")

@@ -10,8 +10,8 @@ from src.features import compute_technical_indicators, OHLC_features
 _PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-def load_dataset(raw_file, datasets_dir='datasets_tfg'):
-    # Loads a CSV from datasets_tfg and returns a DF with date as index
+def load_dataset(raw_file, datasets_dir='data/raw'):
+    # Loads a CSV from data/raw and returns a DF with date as index
     # The path is resolved from the project root
     path = os.path.join(_PROJECT_ROOT, datasets_dir, raw_file)
     df = pd.read_csv(path)

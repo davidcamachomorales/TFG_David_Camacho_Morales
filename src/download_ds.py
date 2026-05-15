@@ -20,7 +20,7 @@ assets = {
 }
 
 # dir to save
-output_dir = "datasets_tfg"
+output_dir = "data/raw"
 os.makedirs(output_dir, exist_ok=True)
 
 # Timelapse 3 years from the day it was created 16-03-2026
