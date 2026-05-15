@@ -1,0 +1,916 @@
+{
+    "Families": [
+        {
+            "Name": "SMA",
+            "Description": "Simple Moving Average",
+            "Category": "trend",
+            "Members": [
+                {
+                    "Name": "TI_SMA_5_Feature"
+                },
+                {
+                    "Name": "TI_SMA_14_Feature"
+                },
+                {
+                    "Name": "TI_SMA_21_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "EMA",
+            "Description": "Exponential Moving Average",
+            "Category": "trend",
+            "Members": [
+                {
+                    "Name": "TI_EMA_5_Feature"
+                },
+                {
+                    "Name": "TI_EMA_14_Feature"
+                },
+                {
+                    "Name": "TI_EMA_21_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "RSI",
+            "Description": "Relative Strength Index",
+            "Category": "momentum",
+            "Members": [
+                {
+                    "Name": "MI_RSI_5_Feature"
+                },
+                {
+                    "Name": "MI_RSI_14_Feature"
+                },
+                {
+                    "Name": "MI_RSI_21_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "MACD",
+            "Description": "Moving Average Convergence Divergence",
+            "Category": "trend",
+            "Members": [
+                {
+                    "Name": "MI_MACD_12_26_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_12_26_Feature"
+                },
+                {
+                    "Name": "MI_MACD_8_17_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_8_17_Feature"
+                },
+                {
+                    "Name": "MI_MACD_13_30_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_13_30_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "BB",
+            "Description": "Bollinger Bands",
+            "Category": "volatility",
+            "Members": [
+                {
+                    "Name": "VolI_BB_Middle_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Middle_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Middle_Band_20_3_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_3_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_3_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "SO",
+            "Description": "Stochastic Oscillator",
+            "Category": "momentum",
+            "Members": [
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_5_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_5_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_14_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_14_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_21_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_21_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "ATR",
+            "Description": "Average True Range",
+            "Category": "volatility",
+            "Members": [
+                {
+                    "Name": "VolI_ATR_5_Feature"
+                },
+                {
+                    "Name": "VolI_ATR_14_Feature"
+                },
+                {
+                    "Name": "VolI_ATR_21_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "RV",
+            "Description": "Rolling Volatility",
+            "Category": "volatility",
+            "Members": [
+                {
+                    "Name": "RV_Rolling_Vol_5_Feature"
+                },
+                {
+                    "Name": "RV_Rolling_Vol_14_Feature"
+                },
+                {
+                    "Name": "RV_Rolling_Vol_21_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "lagged",
+            "Description": "Lagged Features",
+            "Category": "statistical",
+            "Members": [
+                {
+                    "Name": "LF_Lag_5_Feature"
+                },
+                {
+                    "Name": "LF_Lag_14_Feature"
+                },
+                {
+                    "Name": "LF_Lag_21_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "difference_and_change",
+            "Description": "Difference and Change Features",
+            "Category": "statistical",
+            "Members": [
+                {
+                    "Name": "DF_Diff_1_Feature"
+                },
+                {
+                    "Name": "DF_Diff_5_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "temporal_decomposition",
+            "Description": "Temporal Decomposition Features",
+            "Category": "statistical",
+            "Members": [
+                {
+                    "Name": "TD_Trend_5_Feature"
+                },
+                {
+                    "Name": "TD_Seasonal_5_Feature"
+                },
+                {
+                    "Name": "TD_Resid_5_Feature"
+                },
+                {
+                    "Name": "TD_Trend_20_Feature"
+                },
+                {
+                    "Name": "TD_Seasonal_20_Feature"
+                },
+                {
+                    "Name": "TD_Resid_20_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "time_delay_embedding",
+            "Description": "Time Delay Embedding Features",
+            "Category": "statistical",
+            "Members": [
+                {
+                    "Name": "TDE_Dim1_Delay1_Feature"
+                },
+                {
+                    "Name": "TDE_Dim2_Delay1_Feature"
+                },
+                {
+                    "Name": "TDE_Dim3_Delay1_Feature"
+                },
+                {
+                    "Name": "TDE_Dim1_Delay5_Feature"
+                },
+                {
+                    "Name": "TDE_Dim2_Delay5_Feature"
+                },
+                {
+                    "Name": "TDE_Dim3_Delay5_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "baseline",
+            "Description": "Baseline Features \u2014 OHLC log-returns, percentage changes, and ranges",
+            "Category": "baseline",
+            "Members": [
+                {
+                    "Name": "close_log_returns"
+                },
+                {
+                    "Name": "high_log_returns"
+                },
+                {
+                    "Name": "low_log_returns"
+                },
+                {
+                    "Name": "open_log_returns"
+                },
+                {
+                    "Name": "close_perc_change"
+                },
+                {
+                    "Name": "high_perc_change"
+                },
+                {
+                    "Name": "low_perc_change"
+                },
+                {
+                    "Name": "open_perc_change"
+                },
+                {
+                    "Name": "high_low_range"
+                },
+                {
+                    "Name": "close_open_range"
+                }
+            ]
+        },
+        {
+            "Name": "ablation_trend",
+            "Description": "Ablation Group: Baseline + Trend indicators (SMA + EMA + MACD)",
+            "Category": "ablation",
+            "Members": [
+                {
+                    "Name": "close_log_returns"
+                },
+                {
+                    "Name": "high_log_returns"
+                },
+                {
+                    "Name": "low_log_returns"
+                },
+                {
+                    "Name": "open_log_returns"
+                },
+                {
+                    "Name": "close_perc_change"
+                },
+                {
+                    "Name": "high_perc_change"
+                },
+                {
+                    "Name": "low_perc_change"
+                },
+                {
+                    "Name": "open_perc_change"
+                },
+                {
+                    "Name": "high_low_range"
+                },
+                {
+                    "Name": "close_open_range"
+                },
+                {
+                    "Name": "TI_SMA_5_Feature"
+                },
+                {
+                    "Name": "TI_SMA_14_Feature"
+                },
+                {
+                    "Name": "TI_SMA_21_Feature"
+                },
+                {
+                    "Name": "TI_EMA_5_Feature"
+                },
+                {
+                    "Name": "TI_EMA_14_Feature"
+                },
+                {
+                    "Name": "TI_EMA_21_Feature"
+                },
+                {
+                    "Name": "MI_MACD_12_26_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_12_26_Feature"
+                },
+                {
+                    "Name": "MI_MACD_8_17_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_8_17_Feature"
+                },
+                {
+                    "Name": "MI_MACD_13_30_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_13_30_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "ablation_momentum",
+            "Description": "Ablation Group: Baseline + Momentum indicators (RSI + SO)",
+            "Category": "ablation",
+            "Members": [
+                {
+                    "Name": "close_log_returns"
+                },
+                {
+                    "Name": "high_log_returns"
+                },
+                {
+                    "Name": "low_log_returns"
+                },
+                {
+                    "Name": "open_log_returns"
+                },
+                {
+                    "Name": "close_perc_change"
+                },
+                {
+                    "Name": "high_perc_change"
+                },
+                {
+                    "Name": "low_perc_change"
+                },
+                {
+                    "Name": "open_perc_change"
+                },
+                {
+                    "Name": "high_low_range"
+                },
+                {
+                    "Name": "close_open_range"
+                },
+                {
+                    "Name": "MI_RSI_5_Feature"
+                },
+                {
+                    "Name": "MI_RSI_14_Feature"
+                },
+                {
+                    "Name": "MI_RSI_21_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_5_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_5_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_14_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_14_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_21_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_21_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "ablation_volatility",
+            "Description": "Ablation Group: Baseline + Volatility indicators (BB + ATR + RV)",
+            "Category": "ablation",
+            "Members": [
+                {
+                    "Name": "close_log_returns"
+                },
+                {
+                    "Name": "high_log_returns"
+                },
+                {
+                    "Name": "low_log_returns"
+                },
+                {
+                    "Name": "open_log_returns"
+                },
+                {
+                    "Name": "close_perc_change"
+                },
+                {
+                    "Name": "high_perc_change"
+                },
+                {
+                    "Name": "low_perc_change"
+                },
+                {
+                    "Name": "open_perc_change"
+                },
+                {
+                    "Name": "high_low_range"
+                },
+                {
+                    "Name": "close_open_range"
+                },
+                {
+                    "Name": "VolI_BB_Middle_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Middle_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Middle_Band_20_3_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_3_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_3_Feature"
+                },
+                {
+                    "Name": "VolI_ATR_5_Feature"
+                },
+                {
+                    "Name": "VolI_ATR_14_Feature"
+                },
+                {
+                    "Name": "VolI_ATR_21_Feature"
+                },
+                {
+                    "Name": "RV_Rolling_Vol_5_Feature"
+                },
+                {
+                    "Name": "RV_Rolling_Vol_14_Feature"
+                },
+                {
+                    "Name": "RV_Rolling_Vol_21_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "ablation_statistical",
+            "Description": "Ablation Group: Baseline + Statistical features (Lagged + Differences + TD + TDE)",
+            "Category": "ablation",
+            "Members": [
+                {
+                    "Name": "close_log_returns"
+                },
+                {
+                    "Name": "high_log_returns"
+                },
+                {
+                    "Name": "low_log_returns"
+                },
+                {
+                    "Name": "open_log_returns"
+                },
+                {
+                    "Name": "close_perc_change"
+                },
+                {
+                    "Name": "high_perc_change"
+                },
+                {
+                    "Name": "low_perc_change"
+                },
+                {
+                    "Name": "open_perc_change"
+                },
+                {
+                    "Name": "high_low_range"
+                },
+                {
+                    "Name": "close_open_range"
+                },
+                {
+                    "Name": "LF_Lag_5_Feature"
+                },
+                {
+                    "Name": "LF_Lag_14_Feature"
+                },
+                {
+                    "Name": "LF_Lag_21_Feature"
+                },
+                {
+                    "Name": "DF_Diff_1_Feature"
+                },
+                {
+                    "Name": "DF_Diff_5_Feature"
+                },
+                {
+                    "Name": "TD_Trend_5_Feature"
+                },
+                {
+                    "Name": "TD_Seasonal_5_Feature"
+                },
+                {
+                    "Name": "TD_Resid_5_Feature"
+                },
+                {
+                    "Name": "TD_Trend_20_Feature"
+                },
+                {
+                    "Name": "TD_Seasonal_20_Feature"
+                },
+                {
+                    "Name": "TD_Resid_20_Feature"
+                },
+                {
+                    "Name": "TDE_Dim1_Delay1_Feature"
+                },
+                {
+                    "Name": "TDE_Dim2_Delay1_Feature"
+                },
+                {
+                    "Name": "TDE_Dim3_Delay1_Feature"
+                },
+                {
+                    "Name": "TDE_Dim1_Delay5_Feature"
+                },
+                {
+                    "Name": "TDE_Dim2_Delay5_Feature"
+                },
+                {
+                    "Name": "TDE_Dim3_Delay5_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "ablation_all",
+            "Description": "Ablation Group: Baseline + ALL technical indicators combined",
+            "Category": "ablation",
+            "Members": [
+                {
+                    "Name": "close_log_returns"
+                },
+                {
+                    "Name": "high_log_returns"
+                },
+                {
+                    "Name": "low_log_returns"
+                },
+                {
+                    "Name": "open_log_returns"
+                },
+                {
+                    "Name": "close_perc_change"
+                },
+                {
+                    "Name": "high_perc_change"
+                },
+                {
+                    "Name": "low_perc_change"
+                },
+                {
+                    "Name": "open_perc_change"
+                },
+                {
+                    "Name": "high_low_range"
+                },
+                {
+                    "Name": "close_open_range"
+                },
+                {
+                    "Name": "TI_SMA_5_Feature"
+                },
+                {
+                    "Name": "TI_SMA_14_Feature"
+                },
+                {
+                    "Name": "TI_SMA_21_Feature"
+                },
+                {
+                    "Name": "TI_EMA_5_Feature"
+                },
+                {
+                    "Name": "TI_EMA_14_Feature"
+                },
+                {
+                    "Name": "TI_EMA_21_Feature"
+                },
+                {
+                    "Name": "MI_RSI_5_Feature"
+                },
+                {
+                    "Name": "MI_RSI_14_Feature"
+                },
+                {
+                    "Name": "MI_RSI_21_Feature"
+                },
+                {
+                    "Name": "MI_MACD_12_26_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_12_26_Feature"
+                },
+                {
+                    "Name": "MI_MACD_8_17_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_8_17_Feature"
+                },
+                {
+                    "Name": "MI_MACD_13_30_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_13_30_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Middle_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Middle_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Middle_Band_20_3_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_3_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_3_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_5_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_5_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_14_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_14_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_21_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_21_Feature"
+                },
+                {
+                    "Name": "VolI_ATR_5_Feature"
+                },
+                {
+                    "Name": "VolI_ATR_14_Feature"
+                },
+                {
+                    "Name": "VolI_ATR_21_Feature"
+                },
+                {
+                    "Name": "RV_Rolling_Vol_5_Feature"
+                },
+                {
+                    "Name": "RV_Rolling_Vol_14_Feature"
+                },
+                {
+                    "Name": "RV_Rolling_Vol_21_Feature"
+                },
+                {
+                    "Name": "LF_Lag_5_Feature"
+                },
+                {
+                    "Name": "LF_Lag_14_Feature"
+                },
+                {
+                    "Name": "LF_Lag_21_Feature"
+                },
+                {
+                    "Name": "DF_Diff_1_Feature"
+                },
+                {
+                    "Name": "DF_Diff_5_Feature"
+                },
+                {
+                    "Name": "TD_Trend_5_Feature"
+                },
+                {
+                    "Name": "TD_Seasonal_5_Feature"
+                },
+                {
+                    "Name": "TD_Resid_5_Feature"
+                },
+                {
+                    "Name": "TD_Trend_20_Feature"
+                },
+                {
+                    "Name": "TD_Seasonal_20_Feature"
+                },
+                {
+                    "Name": "TD_Resid_20_Feature"
+                },
+                {
+                    "Name": "TDE_Dim1_Delay1_Feature"
+                },
+                {
+                    "Name": "TDE_Dim2_Delay1_Feature"
+                },
+                {
+                    "Name": "TDE_Dim3_Delay1_Feature"
+                },
+                {
+                    "Name": "TDE_Dim1_Delay5_Feature"
+                },
+                {
+                    "Name": "TDE_Dim2_Delay5_Feature"
+                },
+                {
+                    "Name": "TDE_Dim3_Delay5_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "pure_trend",
+            "Description": "Ablation Group: Trend indicators ONLY (no baseline)",
+            "Category": "pure_ablation",
+            "Members": [
+                {
+                    "Name": "TI_SMA_5_Feature"
+                },
+                {
+                    "Name": "TI_SMA_14_Feature"
+                },
+                {
+                    "Name": "TI_SMA_21_Feature"
+                },
+                {
+                    "Name": "TI_EMA_5_Feature"
+                },
+                {
+                    "Name": "TI_EMA_14_Feature"
+                },
+                {
+                    "Name": "TI_EMA_21_Feature"
+                },
+                {
+                    "Name": "MI_MACD_12_26_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_12_26_Feature"
+                },
+                {
+                    "Name": "MI_MACD_8_17_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_8_17_Feature"
+                },
+                {
+                    "Name": "MI_MACD_13_30_Feature"
+                },
+                {
+                    "Name": "MI_Signal_Line_13_30_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "pure_momentum",
+            "Description": "Ablation Group: Momentum indicators ONLY (no baseline)",
+            "Category": "pure_ablation",
+            "Members": [
+                {
+                    "Name": "MI_RSI_5_Feature"
+                },
+                {
+                    "Name": "MI_RSI_14_Feature"
+                },
+                {
+                    "Name": "MI_RSI_21_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_5_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_5_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_14_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_14_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percK_21_Feature"
+                },
+                {
+                    "Name": "MI_Stochastic_Osclilator_percD_21_Feature"
+                }
+            ]
+        },
+        {
+            "Name": "pure_volatility",
+            "Description": "Ablation Group: Volatility indicators ONLY (no baseline)",
+            "Category": "pure_ablation",
+            "Members": [
+                {
+                    "Name": "VolI_BB_Middle_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_1_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Middle_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_2_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Middle_Band_20_3_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Upper_Band_20_3_Feature"
+                },
+                {
+                    "Name": "VolI_BB_Lower_Band_20_3_Feature"
+                },
+                {
+                    "Name": "VolI_ATR_5_Feature"
+                },
+                {
+                    "Name": "VolI_ATR_14_Feature"
+                },
+                {
+                    "Name": "VolI_ATR_21_Feature"
+                },
+                {
+                    "Name": "RV_Rolling_Vol_5_Feature"
+                },
+                {
+                    "Name": "RV_Rolling_Vol_14_Feature"
+                },
+                {
+                    "Name": "RV_Rolling_Vol_21_Feature"
+                }
+            ]
+        }
+    ]
+}

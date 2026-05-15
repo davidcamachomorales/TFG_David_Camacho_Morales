@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+.DS_Store
+RL_outputs/
+datasets_tfg/
+mdpdf.log
