@@ -8,4 +8,3 @@ yfinance
 matplotlib
 scipy
 statsmodels
-seaborn
