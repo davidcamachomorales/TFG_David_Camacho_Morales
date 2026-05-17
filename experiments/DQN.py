@@ -171,16 +171,9 @@ print(f"Processing {len(list_scenario_id)} scenarios × {N_SEEDS} seeds = {total
 print(f"Estimated time: {total_runs * 2 / 60:.1f} hours (assuming ~2 min per run)")
 
 # Create results directories
-os.makedirs(f'{PROJECT_ROOT}/results/df', exist_ok=True)
 os.makedirs(f'{PROJECT_ROOT}/results/json', exist_ok=True)
+os.makedirs(f'{PROJECT_ROOT}/results/json_per_seed', exist_ok=True)
 os.makedirs(f'{PROJECT_ROOT}/results/plot', exist_ok=True)
-os.makedirs(f'{PROJECT_ROOT}/results/tensorboard', exist_ok=True)
-os.makedirs(f'{PROJECT_ROOT}/results/models', exist_ok=True)
-os.makedirs(f'{PROJECT_ROOT}/results/logs', exist_ok=True)
-os.makedirs(f'{PROJECT_ROOT}/results/checkpoints', exist_ok=True)
-
-# debug
-# print("Results directories created")
 
 #----------------------------------------------------------------
 # Main processing loop
