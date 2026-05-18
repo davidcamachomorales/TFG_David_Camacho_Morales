@@ -23,7 +23,8 @@ warnings.filterwarnings("ignore")
 # Configuration
 #---------------------------------------------------------------
 
-RESULTS_DIR = f'{PROJECT_ROOT}/results'
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RESULTS_DIR = os.path.join(PROJECT_ROOT, 'results')
 JSON_DIR = os.path.join(RESULTS_DIR, 'json')
 OUTPUT_DIR = os.path.join(RESULTS_DIR, 'analysis')
 PLOT_DIR = os.path.join(OUTPUT_DIR, 'plots')
