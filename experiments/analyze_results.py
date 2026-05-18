@@ -189,7 +189,7 @@ def generate_paper_comparison_table(df):
     # Generate academic comparison table for baseline, individuals, and top 3 ablations
     
     print("\n" + "-"*80)
-    print("Table 4 — Academic Paper Comparison Table (Top Features vs Baseline)")
+    print("Table 4 — Comparison Table (Top Features vs Baseline)")
     print("-"*80)
     
     # Identify individual features and top ablations based on global Sharpe Ratio
@@ -259,10 +259,77 @@ def generate_paper_comparison_table(df):
     
     print(pivot.to_string())
     
-    path = os.path.join(OUTPUT_DIR, 'table_academic_comparison.csv')
-    pivot.to_csv(path)
-    print(f"\n Saved: {path}")
-    
+    # --- Render as a styled matplotlib table plot ---
+    # Flatten multi-level columns for display
+    flat_cols = [f"{algo}\n{metric}" for algo, metric in pivot.columns]
+    flat_df = pivot.copy()
+    flat_df.columns = flat_cols
+    flat_df = flat_df.reset_index()
+
+    n_rows, n_cols = flat_df.shape
+    col_widths = [2.2] + [1.3] * (n_cols - 1)
+    fig_width = sum(col_widths) + 0.5
+    fig_height = 1.2 + n_rows * 0.45
+
+    fig, ax = plt.subplots(figsize=(fig_width, fig_height))
+    ax.axis('off')
+    ax.set_title('Comparison Table — Top Features vs Baseline',
+                 fontsize=14, fontweight='bold', pad=18)
+
+    cell_text = flat_df.values.tolist()
+    col_labels = flat_df.columns.tolist()
+
+    table = ax.table(
+        cellText=cell_text,
+        colLabels=col_labels,
+        cellLoc='center',
+        loc='center',
+    )
+    table.auto_set_font_size(False)
+    table.set_fontsize(8)
+
+    # Style header row
+    for j in range(n_cols):
+        cell = table[0, j]
+        cell.set_facecolor('#2C3E50')
+        cell.set_text_props(color='white', fontweight='bold', fontsize=8)
+        cell.set_height(0.08)
+
+    # Display names back to categories for row colouring
+    display_to_cat = {}
+    for fam, display in FAMILY_DISPLAY.items():
+        display_to_cat[display] = FAMILY_CATEGORY.get(fam, 'unknown')
+
+    cat_row_colors = {
+        'baseline':      '#E9ECEF',
+        'trend':         '#D0E2FF',
+        'momentum':      '#D1E7DD',
+        'volatility':    '#F8D7DA',
+        'statistical':   '#FFF3CD',
+        'ablation':      '#E2D9F3',
+        'pure_ablation': '#F7D6E6',
+    }
+
+    for i in range(n_rows):
+        family_name = cell_text[i][0]
+        cat = display_to_cat.get(family_name, 'unknown')
+        bg = cat_row_colors.get(cat, '#FFFFFF')
+
+        for j in range(n_cols):
+            cell = table[i + 1, j]
+            cell.set_facecolor(bg)
+            cell.set_height(0.06)
+            if j == 0:
+                cell.set_text_props(fontweight='bold', ha='left')
+
+    table.auto_set_column_width(list(range(n_cols)))
+
+    plt.tight_layout()
+    path = os.path.join(PLOT_DIR, 'table_comparison_results.png')
+    plt.savefig(path, dpi=200, bbox_inches='tight', facecolor='white')
+    plt.close()
+    print(f"\n  Saved plot: {path}")
+
     return pivot
 #######################################
 
