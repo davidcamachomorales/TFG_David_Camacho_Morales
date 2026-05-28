@@ -112,7 +112,8 @@ def load_all_results():
             # Extract mean/std for key metrics
             for metric in ['total_return', 'sharpe_ratio', 'sortino_ratio',
                            'max_drawdown', 'win_rate', 'trade_count',
-                           'final_net_worth', 'total_transaction_costs']:
+                           'final_net_worth', 'total_transaction_costs',
+                           'trade_frequency']:
                 row[f'{metric}_mean'] = data.get(f'{metric}_mean', np.nan)
                 row[f'{metric}_std'] = data.get(f'{metric}_std', np.nan)
                 row[f'{metric}_values'] = data.get(f'{metric}_values', [])
@@ -151,6 +152,28 @@ def generate_summary_tables(df):
     pivot.to_csv(os.path.join(OUTPUT_DIR, 'table_sharpe_by_family.csv'))
     
     print("\n" + "-"*80)
+    print("Table 1.5 — average Sortino Ratio by family and algorithm")
+    print("-"*80)
+    
+    pivot_sortino = df.pivot_table(
+        values='sortino_ratio_mean',
+        index='feature_family',
+        columns='algorithm',
+        aggfunc='mean'
+    ).round(3)
+    
+    pivot_sortino['Category'] = pivot_sortino.index.map(lambda x: FAMILY_CATEGORY.get(x, ''))
+    # Calculate average of available algorithms for sorting
+    algo_cols = [c for c in ALGORITHMS if c in pivot_sortino.columns]
+    pivot_sortino['Mean_Sortino'] = pivot_sortino[algo_cols].mean(axis=1)
+    pivot_sortino = pivot_sortino.sort_values(['Category', 'Mean_Sortino'], ascending=[True, False])
+    
+    # Print and save pivot table without Mean_Sortino column
+    pivot_sortino_print = pivot_sortino.drop(columns=['Mean_Sortino'])
+    print(pivot_sortino_print.to_string())
+    pivot_sortino_print.to_csv(os.path.join(OUTPUT_DIR, 'table_sortino_by_family.csv'))
+    
+    print("\n" + "-"*80)
     print("Table 2 — average return by family and algorithm")
     print("-"*80)
     
@@ -166,16 +189,18 @@ def generate_summary_tables(df):
     
     # Table 3 overall ranking
     print("\n" + "-"*80)
-    print("Table 3 — global ranking of families by average Sharpe Ratio across all algorithms and assets")
+    print("Table 3 — global ranking of families by metrics across all algorithms and assets")
     print("-"*80)
     
     ranking = df.groupby('feature_family').agg(
         sharpe_mean=('sharpe_ratio_mean', 'mean'),
         sharpe_std=('sharpe_ratio_mean', 'std'),
+        sortino_mean=('sortino_ratio_mean', 'mean'),
+        sortino_std=('sortino_ratio_mean', 'std'),
         return_mean=('total_return_mean', 'mean'),
         win_rate_mean=('win_rate_mean', 'mean'),
         max_dd_mean=('max_drawdown_mean', 'mean'),
-        n_scenarios=('scenario_id', 'count'),
+        trade_count_mean=('trade_count_mean', 'mean'),
     ).sort_values('sharpe_mean', ascending=False).round(4)
     
     ranking['category'] = ranking.index.map(lambda x: FAMILY_CATEGORY.get(x, ''))
@@ -219,6 +244,7 @@ def generate_paper_comparison_table(df):
     metrics = {
         'total_return_mean': 'Return (%)',
         'sharpe_ratio_mean': 'Sharpe',
+        'sortino_ratio_mean': 'Sortino',
         'win_rate_mean': 'Win Rate (%)',
         'max_drawdown_mean': 'Max DD (%)'
     }
@@ -267,7 +293,7 @@ def generate_paper_comparison_table(df):
     flat_df = flat_df.reset_index()
 
     n_rows, n_cols = flat_df.shape
-    col_widths = [2.2] + [1.3] * (n_cols - 1)
+    col_widths = [2.2] + [1.15] * (n_cols - 1)
     fig_width = sum(col_widths) + 0.5
     fig_height = 1.2 + n_rows * 0.45
 
@@ -286,7 +312,7 @@ def generate_paper_comparison_table(df):
         loc='center',
     )
     table.auto_set_font_size(False)
-    table.set_fontsize(8)
+    table.set_fontsize(7.5)
 
     # Style header row
     for j in range(n_cols):
@@ -338,48 +364,163 @@ def generate_paper_comparison_table(df):
 #---------------------------------------------------------------
 
 def plot_boxplot_sharpe_by_family(df):
-    #Boxplot of Sharpe ratio for each family, grouped by algorithm
-    
-    # Get individual families only
-    individual = df[df['category'].isin(['baseline', 'trend', 'momentum', 'volatility', 'statistical'])]
-    
-    families_order = ['baseline', 'SMA', 'EMA', 'MACD', 'RSI', 'SO',
-                      'BB', 'ATR', 'RV', 'lagged', 'difference_and_change',
-                      'temporal_decomposition', 'time_delay_embedding']
-    
-    fig, axes = plt.subplots(1, 3, figsize=(22, 7), sharey=True)
-    fig.suptitle('Sharpe Ratio by feature family for individual features', 
+    #Boxplot of Sharpe ratio for each family and ablation group, grouped by algorithm
+
+    # Include all categories: individual families, ablation groups and pure groups
+    all_data = df[df['category'].isin(
+        ['baseline', 'trend', 'momentum', 'volatility', 'statistical',
+         'ablation', 'pure_ablation']
+    )]
+
+    # Ordered list: individuals first, then ablation groups, then pure groups
+    families_order = [
+        'baseline', 'SMA', 'EMA', 'MACD', 'RSI', 'SO',
+        'BB', 'ATR', 'RV', 'lagged', 'difference_and_change',
+        'temporal_decomposition', 'time_delay_embedding',
+        # incremental ablation groups
+        'ablation_trend', 'ablation_momentum', 'ablation_volatility',
+        'ablation_statistical', 'ablation_all',
+        # pure groups (no baseline)
+        'pure_trend', 'pure_momentum', 'pure_volatility',
+    ]
+
+    fig, axes = plt.subplots(1, 3, figsize=(32, 7), sharey=True)
+    fig.suptitle('Sharpe Ratio by feature family — Individual, Ablation and Pure groups',
                  fontsize=16, fontweight='bold', y=1.02)
-    
+
     for ax, algo in zip(axes, ALGORITHMS):
-        algo_data = individual[individual['algorithm'] == algo]
-        
+        algo_data = all_data[all_data['algorithm'] == algo]
+
         box_data = []
         labels = []
         colors = []
+        positions = []
+        pos = 1
+        separator_positions = []   # x-positions where we draw a vertical separator
+
         for fam in families_order:
+            # Add a small gap before the ablation and pure sections
+            if fam == 'ablation_trend':
+                separator_positions.append(pos - 0.5)
+                pos += 0.5
+            elif fam == 'pure_trend':
+                separator_positions.append(pos - 0.5)
+                pos += 0.5
+
             fam_data = algo_data[algo_data['feature_family'] == fam]
             if len(fam_data) > 0:
                 box_data.append(fam_data['sharpe_ratio_mean'].values)
                 labels.append(FAMILY_DISPLAY.get(fam, fam))
                 colors.append(CATEGORY_COLORS.get(FAMILY_CATEGORY.get(fam, ''), '#999'))
-        
+                positions.append(pos)
+            pos += 1
+
         if not box_data:
             continue
-            
-        bp = ax.boxplot(box_data, patch_artist=True, labels=labels)
+
+        bp = ax.boxplot(box_data, patch_artist=True, positions=positions,
+                        widths=0.6, manage_ticks=False)
         for patch, color in zip(bp['boxes'], colors):
             patch.set_facecolor(color)
-            patch.set_alpha(0.6)
-        
+            patch.set_alpha(0.7)
+
+        # Vertical separators between sections
+        for sep_x in separator_positions:
+            ax.axvline(x=sep_x, color='grey', linestyle=':', linewidth=1.2, alpha=0.7)
+
+        ax.set_xticks(positions)
+        ax.set_xticklabels(labels, rotation=55, ha='right', fontsize=8)
+        ax.set_xlim(0, pos)
         ax.set_title(algo, fontsize=14, fontweight='bold')
         ax.set_ylabel('Sharpe Ratio' if ax == axes[0] else '')
         ax.axhline(y=0, color='black', linestyle='--', alpha=0.3)
-        ax.tick_params(axis='x', rotation=45)
         ax.grid(axis='y', alpha=0.3)
-    
+
     plt.tight_layout()
     path = os.path.join(PLOT_DIR, 'boxplot_sharpe_individual.png')
+    plt.savefig(path, dpi=150, bbox_inches='tight')
+    plt.close()
+    print(f"Saved: {path}")
+
+
+def plot_boxplot_sortino_by_family(df):
+    #Boxplot of Sortino ratio for each family and ablation group, grouped by algorithm
+
+    # Include all categories: individual families, ablation groups and pure groups
+    all_data = df[df['category'].isin(
+        ['baseline', 'trend', 'momentum', 'volatility', 'statistical',
+         'ablation', 'pure_ablation']
+    )]
+
+    # Ordered list: individuals first, then ablation groups, then pure groups (matching Sharpe)
+    families_order = [
+        'baseline', 'SMA', 'EMA', 'MACD', 'RSI', 'SO',
+        'BB', 'ATR', 'RV', 'lagged', 'difference_and_change',
+        'temporal_decomposition', 'time_delay_embedding',
+        # incremental ablation groups
+        'ablation_trend', 'ablation_momentum', 'ablation_volatility',
+        'ablation_statistical', 'ablation_all',
+        # pure groups (no baseline)
+        'pure_trend', 'pure_momentum', 'pure_volatility',
+    ]
+
+    fig, axes = plt.subplots(1, 3, figsize=(32, 7), sharey=True)
+    fig.suptitle('Sortino Ratio by feature family — Individual, Ablation and Pure groups',
+                 fontsize=16, fontweight='bold', y=1.02)
+
+    for ax, algo in zip(axes, ALGORITHMS):
+        algo_data = all_data[all_data['algorithm'] == algo]
+
+        box_data = []
+        labels = []
+        colors = []
+        positions = []
+        pos = 1
+        separator_positions = []   # x-positions where we draw a vertical separator
+
+        for fam in families_order:
+            # Add a small gap before the ablation and pure sections
+            if fam == 'ablation_trend':
+                separator_positions.append(pos - 0.5)
+                pos += 0.5
+            elif fam == 'pure_trend':
+                separator_positions.append(pos - 0.5)
+                pos += 0.5
+
+            fam_data = algo_data[algo_data['feature_family'] == fam]
+            if len(fam_data) > 0:
+                # Handle possible NaN values in Sortino
+                vals = fam_data['sortino_ratio_mean'].dropna().values
+                if len(vals) > 0:
+                    box_data.append(vals)
+                    labels.append(FAMILY_DISPLAY.get(fam, fam))
+                    colors.append(CATEGORY_COLORS.get(FAMILY_CATEGORY.get(fam, ''), '#999'))
+                    positions.append(pos)
+            pos += 1
+
+        if not box_data:
+            continue
+
+        bp = ax.boxplot(box_data, patch_artist=True, positions=positions,
+                        widths=0.6, manage_ticks=False)
+        for patch, color in zip(bp['boxes'], colors):
+            patch.set_facecolor(color)
+            patch.set_alpha(0.7)
+
+        # Vertical separators between sections
+        for sep_x in separator_positions:
+            ax.axvline(x=sep_x, color='grey', linestyle=':', linewidth=1.2, alpha=0.7)
+
+        ax.set_xticks(positions)
+        ax.set_xticklabels(labels, rotation=55, ha='right', fontsize=8)
+        ax.set_xlim(0, pos)
+        ax.set_title(algo, fontsize=14, fontweight='bold')
+        ax.set_ylabel('Sortino Ratio' if ax == axes[0] else '')
+        ax.axhline(y=0, color='black', linestyle='--', alpha=0.3)
+        ax.grid(axis='y', alpha=0.3)
+
+    plt.tight_layout()
+    path = os.path.join(PLOT_DIR, 'boxplot_sortino_individual.png')
     plt.savefig(path, dpi=150, bbox_inches='tight')
     plt.close()
     print(f"Saved: {path}")
@@ -486,47 +627,82 @@ def plot_pure_vs_baseline(df):
 
 
 def plot_heatmap_sharpe(df):
-    #Heatmap -> rows=families, columns=assets, color=Sharpe Ratio
-    
+    #Heatmap -> rows=families (individual + ablation), columns=assets, color=Sharpe Ratio
+
+    # Row order: individuals first, then ablation groups, then pure groups
+    row_order = [
+        'baseline', 'SMA', 'EMA', 'MACD', 'RSI', 'SO',
+        'BB', 'ATR', 'RV', 'lagged', 'difference_and_change',
+        'temporal_decomposition', 'time_delay_embedding',
+        'ablation_trend', 'ablation_momentum', 'ablation_volatility',
+        'ablation_statistical', 'ablation_all',
+        'pure_trend', 'pure_momentum', 'pure_volatility',
+    ]
+
     for algo in ALGORITHMS:
         algo_data = df[df['algorithm'] == algo]
-        
-        # individual families + baseline
-        individual = algo_data[algo_data['category'].isin(
-            ['baseline', 'trend', 'momentum', 'volatility', 'statistical'])]
-        
-        if len(individual) == 0:
+
+        # Include all categories
+        all_fams = algo_data[algo_data['category'].isin(
+            ['baseline', 'trend', 'momentum', 'volatility', 'statistical',
+             'ablation', 'pure_ablation']
+        )]
+
+        if len(all_fams) == 0:
             continue
-        
-        pivot = individual.pivot_table(
+
+        pivot = all_fams.pivot_table(
             values='sharpe_ratio_mean',
             index='feature_family',
             columns='asset',
             aggfunc='mean'
         )
-        
-        fig, ax = plt.subplots(figsize=(14, 8))
-        
+
+        # Reindex rows in the canonical order (only rows that exist in results)
+        ordered_rows = [r for r in row_order if r in pivot.index]
+        pivot = pivot.reindex(ordered_rows)
+
+        n_rows = len(pivot.index)
+        fig_height = max(8, 0.55 * n_rows + 2)
+        fig, ax = plt.subplots(figsize=(14, fig_height))
+
+        # Symmetric colour scale
+        vals = pivot.values.astype(float)
+        finite_vals = vals[~np.isnan(vals)]
+        vmax = max(abs(finite_vals.max()), abs(finite_vals.min())) if len(finite_vals) else 1
         cmap = plt.cm.RdYlGn
-        im = ax.imshow(pivot.values, cmap=cmap, aspect='auto')
-        
+        im = ax.imshow(vals, cmap=cmap, aspect='auto', vmin=-vmax, vmax=vmax)
+
         ax.set_xticks(range(len(pivot.columns)))
-        ax.set_xticklabels(pivot.columns, rotation=45, ha='right')
-        ax.set_yticks(range(len(pivot.index)))
-        ax.set_yticklabels([FAMILY_DISPLAY.get(f, f) for f in pivot.index])
-        
+        ax.set_xticklabels(pivot.columns, rotation=45, ha='right', fontsize=9)
+        ax.set_yticks(range(n_rows))
+        ax.set_yticklabels([FAMILY_DISPLAY.get(f, f) for f in pivot.index], fontsize=9)
+
         # Annotate cells
-        for i in range(len(pivot.index)):
+        for i in range(n_rows):
             for j in range(len(pivot.columns)):
-                val = pivot.values[i, j]
+                val = vals[i, j]
                 if not np.isnan(val):
-                    color = 'white' if abs(val) > 1.5 else 'black'
-                    ax.text(j, i, f'{val:.2f}', ha='center', va='center', 
-                            color=color, fontsize=8, fontweight='bold')
-        
+                    text_color = 'white' if abs(val) > vmax * 0.6 else 'black'
+                    ax.text(j, i, f'{val:.2f}', ha='center', va='center',
+                            color=text_color, fontsize=7.5, fontweight='bold')
+
+        # Draw separator lines between individual / ablation / pure sections
+        ablation_start = next(
+            (i for i, f in enumerate(pivot.index) if f == 'ablation_trend'), None)
+        pure_start = next(
+            (i for i, f in enumerate(pivot.index) if f == 'pure_trend'), None)
+        for sep in [ablation_start, pure_start]:
+            if sep is not None and sep > 0:
+                ax.axhline(sep - 0.5, color='white', linewidth=2, linestyle='--')
+
         plt.colorbar(im, label='Sharpe Ratio')
-        ax.set_title(f'Heatmap Sharpe Ratio — {algo}', fontsize=14, fontweight='bold')
-        
+        ax.set_title(
+            f'Heatmap Sharpe Ratio — {algo}\n'
+            f'(individual families | ablation groups | pure groups)',
+            fontsize=13, fontweight='bold'
+        )
+
         plt.tight_layout()
         path = os.path.join(PLOT_DIR, f'heatmap_sharpe_{algo}.png')
         plt.savefig(path, dpi=150, bbox_inches='tight')
@@ -536,35 +712,49 @@ def plot_heatmap_sharpe(df):
 
 def plot_category_summary(df):
     #Bar chart comparing average Sharpe by category across algorithms
-    
-    # only individual families
-    individual = df[df['category'].isin(['baseline', 'trend', 'momentum', 'volatility', 'statistical'])]
-    
-    if len(individual) == 0:
+    #Includes individual, ablation and pure_ablation categories
+
+    all_data = df[df['category'].isin(
+        ['baseline', 'trend', 'momentum', 'volatility', 'statistical',
+         'ablation', 'pure_ablation']
+    )]
+
+    if len(all_data) == 0:
         return
-    
-    fig, ax = plt.subplots(figsize=(12, 6))
-    
-    categories = ['baseline', 'trend', 'momentum', 'volatility', 'statistical']
+
+    categories = ['baseline', 'trend', 'momentum', 'volatility', 'statistical',
+                  'ablation', 'pure_ablation']
+    cat_labels = ['Baseline', 'Trend', 'Momentum', 'Volatility', 'Statistical',
+                  'Ablation\n(Base+Group)', 'Pure Ablation\n(no Baseline)']
+
     x = np.arange(len(categories))
-    width = 0.25
-    
+    width = 0.22
+
+    fig, ax = plt.subplots(figsize=(16, 6))
+
     for i, algo in enumerate(ALGORITHMS):
         means = []
         for cat in categories:
-            cat_data = individual[(individual['algorithm'] == algo) & (individual['category'] == cat)]
+            cat_data = all_data[(all_data['algorithm'] == algo) & (all_data['category'] == cat)]
             means.append(cat_data['sharpe_ratio_mean'].mean() if len(cat_data) > 0 else 0)
-        
-        ax.bar(x + i*width, means, width, label=algo, alpha=0.8)
-    
+
+        ax.bar(x + i * width, means, width, label=algo, alpha=0.8)
+
+    # Separator line between individual and ablation sections
+    ax.axvline(x=4.5 + width, color='grey', linestyle=':', linewidth=1.5, alpha=0.7)
+    ax.text(4.6 + width, ax.get_ylim()[1] if ax.get_ylim()[1] != 0 else 0.1,
+            '← individual  |  combined →', fontsize=8, color='grey', va='top')
+
     ax.set_xticks(x + width)
-    ax.set_xticklabels([c.capitalize() for c in categories])
+    ax.set_xticklabels(cat_labels, fontsize=10)
     ax.set_ylabel('Sharpe Ratio (average)', fontsize=12)
-    ax.set_title('Sharpe Ratio by feature category and algorithm', fontsize=14, fontweight='bold')
-    ax.legend()
+    ax.set_title('Sharpe Ratio by feature category and algorithm\n'
+                 '(individual families, ablation groups and pure groups)',
+                 fontsize=14, fontweight='bold')
+    ax.legend(fontsize=11)
     ax.grid(axis='y', alpha=0.3)
     ax.axhline(y=0, color='black', linestyle='--', alpha=0.3)
-    
+
     plt.tight_layout()
     path = os.path.join(PLOT_DIR, 'barplot_category_summary.png')
     plt.savefig(path, dpi=150, bbox_inches='tight')
@@ -673,6 +863,7 @@ if __name__ == '__main__':
     # Plots
     print("\n Generating graphics....")
     plot_boxplot_sharpe_by_family(df)
+    plot_boxplot_sortino_by_family(df)
     plot_ablation_comparison(df)
     plot_pure_vs_baseline(df)
     plot_heatmap_sharpe(df)
