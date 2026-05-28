@@ -7,5 +7,6 @@ venv/
 results/
 data/
 env/
+Scripts_aux_consult_data/
 .vscode/
 .ipynb_checkpoints/
