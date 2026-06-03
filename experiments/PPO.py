@@ -1,3 +1,5 @@
+# To know how to execute it go to README.md
+
 import pandas as pd
 import numpy as np
 import json

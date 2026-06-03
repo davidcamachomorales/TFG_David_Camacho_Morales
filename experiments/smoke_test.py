@@ -1,6 +1,8 @@
 """
 Smoke test to verify the full pipeline works for DQN, PPO and A2C
 with only 1 scenario, 1 seed, and few timesteps
+
+To use it go to README.md
 """
 import pandas as pd
 import numpy as np

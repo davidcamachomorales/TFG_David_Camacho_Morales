@@ -97,6 +97,8 @@ Nota: Cada script leerá automáticamente las configuraciones desde `config/`. P
    python experiments/equity_curves.py --asset Gold --timesteps 5000 --seed 42
    ```
 
+   En el timestep se preconfigura con 5000 para hacer una prueba rápida pero si se busca gráfica con una precisión más alta se recomienda incrementar, aunque el tiempo de ejecución será mayor.
+
    Al ser ejecutado se guardará un gráfico en la carpeta `results/`.
 
 ## Arquitectura de Features y Ablación

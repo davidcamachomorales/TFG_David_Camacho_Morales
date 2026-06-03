@@ -4,9 +4,7 @@ Combinatorial Ablation Scenarios Heatmap
 Generates a Sharpe Ratio heatmap for the structured ablation scenarios
 from the results
 
-To use it -->
-
-  python experiments/generate_ablation_heatmap.py
+To use it --> see README.md
 
 Optional arguments:
   --asset   Filter to a single asset

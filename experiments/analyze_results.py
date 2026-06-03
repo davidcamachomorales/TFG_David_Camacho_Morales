@@ -2,9 +2,7 @@
 Read JSON results from DQN.py, PPO.py and A2C.py
 and produce comparative tables, boxplots, heatmaps and statistical tests
 
-To use it->
-    cd experiments
-    python analyze_results.py
+To use it-> see README.md
 """
 
 import pandas as pd

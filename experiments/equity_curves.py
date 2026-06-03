@@ -2,10 +2,7 @@
 Create 3 graphics one for each algorithm with the evolution of an investment
 1000€ for each feature family
 
-To use it->  python equity_curves.py [--asset Gold] [--timesteps 5000] [--seed 123]
-
-Here i put 5000 to make a quick test but if u want an accurate output put 100000 but it
-will late a lot
+To use it --> see README.md
 """
 import pandas as pd
 import numpy as np
