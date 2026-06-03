@@ -500,8 +500,8 @@ def run_combinatorial_ablation(args):
         )
 
     #Main loop
-    per_seed_rows: List[Dict] = []      # one row per combo × algo × seed
-    summary_rows: List[Dict] = []       # one row per combo × algo (aggregated)
+    per_seed_rows: List[Dict] = []      # one row per combo x algo x seed
+    summary_rows: List[Dict] = []       # one row per combo x algo (aggregated)
 
     for combo_idx, combo in enumerate(combinations):
         combo_name = "+".join(combo)
