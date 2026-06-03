@@ -44,30 +44,49 @@ pip install -r requirements.txt
 
 ## Uso y Ejecución
 
-1. **Descarga de Datos:** Si la carpeta `data/raw/` está vacía, puedes descargar los datos ejecutando:
+1. **Descarga de Datos:** Se pueden descargar los datos ejecutando:
 
    ```bash
    python src/download_ds.py
    ```
 
-2. **Entrenamiento y Experimentación:** Puedes ejecutar cualquiera de los algoritmos desde la raíz del proyecto o desde dentro de la carpeta `experiments/`:
+   Al ejecutarlo se creará la carpeta `data/raw/` con los datos de los activos financieros.
+
+2. **Entrenamiento y Experimentación:** Se pueden ejecutar los algoritmos desde la raíz del proyecto o desde dentro de la carpeta `experiments/`:
 
    ```bash
+   # Test usado para verificar el pipeline
+   python experiments/smoke_test.py
+
+   # Si se quiere ejecutar más de un algoritmo hacerlo de forma simultanea en distintos terminales
+
+   # Ejecución del algoritmo DQN
    python experiments/DQN.py
+
+   # Ejecución del algoritmo PPO
+   python experiments/PPO.py
+
+   # Ejecución del algoritmo A2C
+   python experiments/A2C.py
    ```
 
-   _Nota: Cada script leerá automáticamente las configuraciones desde `config/`._
+Nota: Cada script leerá automáticamente las configuraciones desde `config/`. Por otra parte se creará una carpeta de `results/` al ejecutar cualquier algoritmo.
 
-3. **Análisis de Resultados:** Una vez ejecutados los modelos, genera las métricas y comparativas:
+3. **Análisis de Resultados:** Una vez ejecutados los modelos, se pueden generar las métricas y comparativas:
 
    ```bash
    python experiments/analyze_results.py
    ```
 
+   Al ejecutarlo el análisis de los resultados se guardarán en la carpeta `results/`.
+
 4. **Curvas de Capital:** Para visualizar el rendimiento:
+
    ```bash
    python experiments/equity_curves.py --asset Gold --timesteps 5000 --seed 42
    ```
+
+   Al ser ejecutado se guardará un gráfico en la carpeta `results/`.
 
 ## Arquitectura de Features y Ablación
 
@@ -93,7 +112,9 @@ El script acepta cualquier asset mediante `--asset`.
 **Cómo ejecutarlo:**
 
 ```bash
+
 # Ejecución rápida — familias individuales, 1 semilla, DQN
+# Top-k sirve para obtener las k mejores combinaciones. Si no se pone, se obtendrán todas
 python experiments/combinatorial_ablation.py --asset Gold --max-combination-size 1 --timesteps 5000 --seeds 42 --algorithms DQN --top-k 10
 
 # Análisis de pares y tríos — 3 algoritmos, 3 semillas (tarda más)
@@ -107,15 +128,7 @@ python experiments/combinatorial_ablation.py --asset Bitcoin --max-combination-s
 
 **Dónde se guardan los resultados:**
 
-```
-results/combinatorial_ablation/<ASSET>/
-├── combinatorial_results.csv      # Un resultado por combinación × algoritmo × semilla
-├── combinatorial_results.json     # Mismo contenido en JSON
-├── combinatorial_summary.csv      # Agregado por combinación × algoritmo (media/std)
-├── top_10_combinations.png        # Tabla visual del top-K por Sharpe
-├── combinatorial_heatmap.png      # Heatmap top-K combinaciones × algoritmos
-└── summary_report.txt             # Resumen legible por humanos
-```
+Todos los resultados se guardarán en la carpeta `results/`, en un directorio específico para la ablación combinatoria creado al ejecutar el script.
 
 **Cómo interpretar los resultados:**
 
