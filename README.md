@@ -1,6 +1,6 @@
-# TFG: Estudio Empírico de Importancia de Features en DRL para Finanzas
+# TFG: Estudio empírico de familias de características financieras en agentes de aprendizaje por refuerzo profundo para trading algorítmico
 
-Este repositorio contiene el código fuente para el Trabajo de Fin de Grado (TFG) centrado en la evaluación de diferentes familias de características (features) financieras utilizando algoritmos de Deep Reinforcement Learning (DRL) para el trading cuantitativo.
+Este repositorio contiene el código fuente para el Trabajo de Fin de Grado (TFG) centrado en la evaluación de diferentes familias de features financieras utilizando algoritmos de Deep Reinforcement Learning (DRL) para el trading algorítmico.
 
 ## Estructura del Proyecto
 
@@ -51,6 +51,17 @@ pip install -r requirements.txt
    ```
 
    Al ejecutarlo se creará la carpeta `data/raw/` con los datos de los activos financieros.
+   Los datos corresponden a los siguientes activos financieros:
+   - Gold
+   - Silver
+   - Nvidia
+   - Apple
+   - Google
+   - Inditex
+   - Bitcoin
+   - Ethereum
+   - TetherUSDT
+   - S&P_500_Vanguard
 
 2. **Entrenamiento y Experimentación:** Se pueden ejecutar los algoritmos desde la raíz del proyecto o desde dentro de la carpeta `experiments/`:
 
